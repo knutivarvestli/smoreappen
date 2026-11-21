@@ -1,0 +1,137 @@
+/* Design tokens, docs/SPEC_NEW.md section 3 ("vinter og fjell"). */
+
+:root {
+  /* Colour, light mode */
+  --bg: #F3F7FA;
+  --surface: #FFFFFF;
+  --text: #14212E;
+  --text-2: #4A5B6B;
+  --border: #C3D0DB;
+  --primary: #14304F;
+  --on-primary: #FFFFFF;
+  --ice: #DCEBF6;
+  --klassisk: #9A5410;
+  --klassisk-bg: #FBEBD3;
+  --skoyting: #0B6E6C;
+  --skoyting-bg: #D6F0EE;
+  --web: #3F5A73;
+  --web-bg: #E4EBF2;
+  --mine: #0B6E6C;
+  --on-mine: #FFFFFF;
+  --mine-bg: #D6F0EE;
+  --ok: #1D5A22;
+  --ok-bg: #DFF1E0;
+  --warn: #7A4108;
+  --warn-bg: #FBEBD3;
+  --error: #A32D2D;
+  --error-bg: #FBE4E4;
+  --focus: #14304F;
+  --mountain-back: #AFC4D8;
+  --mountain-front: #CFDDE9;
+
+  /* Typography */
+  --font: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --fs-display: 3.25rem;  /* 52 px temperature display */
+  --fs-title: 1.5rem;
+  --fs-heading: 1.125rem;
+  --fs-body: 1rem;
+  --fs-help: 0.875rem;
+  --fs-label: 0.8125rem;
+  --lh-tight: 1.15;
+  --lh-body: 1.5;
+
+  /* Spacing (4 px base) */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 20px;
+  --s6: 24px;
+  --s8: 32px;
+  --s10: 40px;
+
+  /* Shape */
+  --line: 1.5px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-full: 999px;
+  --tap: 48px;
+
+  /* Layers */
+  --z-nav: 10;
+  --z-overlay: 20;
+
+  /* Motion */
+  --dur: 150ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1620;
+    --surface: #16232F;
+    --text: #E9F0F6;
+    --text-2: #A5B6C5;
+    --border: #34495B;
+    --primary: #8EC5EC;
+    --on-primary: #0D1620;
+    --ice: #1D3447;
+    --klassisk: #F0B261;
+    --klassisk-bg: #3A2A14;
+    --skoyting: #5FD1CC;
+    --skoyting-bg: #12403F;
+    --web: #A9C0D6;
+    --web-bg: #22384B;
+    --mine: #5FD1CC;
+    --on-mine: #0D1620;
+    --mine-bg: #12403F;
+    --ok: #8FD694;
+    --ok-bg: #17321B;
+    --warn: #F0B261;
+    --warn-bg: #3A2A14;
+    --error: #F09595;
+    --error-bg: #3A1C1C;
+    --focus: #8EC5EC;
+  --mountain-back: #2A4257;
+  --mountain-front: #1D3447;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0D1620;
+  --surface: #16232F;
+  --text: #E9F0F6;
+  --text-2: #A5B6C5;
+  --border: #34495B;
+  --primary: #8EC5EC;
+  --on-primary: #0D1620;
+  --ice: #1D3447;
+  --klassisk: #F0B261;
+  --klassisk-bg: #3A2A14;
+  --skoyting: #5FD1CC;
+  --skoyting-bg: #12403F;
+  --web: #A9C0D6;
+  --web-bg: #22384B;
+  --mine: #5FD1CC;
+  --on-mine: #0D1620;
+  --mine-bg: #12403F;
+  --ok: #8FD694;
+  --ok-bg: #17321B;
+  --warn: #F0B261;
+  --warn-bg: #3A2A14;
+  --error: #F09595;
+  --error-bg: #3A1C1C;
+  --focus: #8EC5EC;
+  --mountain-back: #2A4257;
+  --mountain-front: #1D3447;
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur: 0ms;
+  }
+}

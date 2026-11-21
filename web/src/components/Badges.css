@@ -1,0 +1,38 @@
+.badge,
+.flag,
+.src,
+.conf,
+.disc-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s1);
+  min-height: 26px;
+  padding: 2px var(--s2);
+  border: var(--line) solid transparent;
+  border-radius: var(--r-sm);
+  font-size: var(--fs-label);
+  font-weight: 650;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.badge--ok, .flag--ok { color: var(--ok); background: var(--ok-bg); border-color: var(--ok); }
+.badge--warn, .flag--warn { color: var(--warn); background: var(--warn-bg); border-color: var(--warn); }
+.badge--muted { color: var(--text-2); background: var(--bg); border-color: var(--border); text-decoration: line-through; }
+
+.src--min { color: var(--mine); background: var(--mine-bg); border-color: var(--mine); }
+.src--andres { color: var(--web); background: var(--web-bg); border-color: var(--web); }
+
+/* Confidence: shape differs, not just colour */
+.conf--solid { color: var(--on-mine); background: var(--mine); border-color: var(--mine); }
+.conf--noe { color: var(--mine); background: var(--mine-bg); border-color: var(--mine); }
+.conf--ett { color: var(--text-2); background: var(--surface); border-color: var(--text-2); border-style: dashed; }
+
+/* Discipline tag: coloured stripe on the left plus text */
+.disc-tag {
+  padding-left: var(--s2);
+  border-left-width: 4px;
+  border-radius: 4px var(--r-sm) var(--r-sm) 4px;
+}
+.disc-tag--klassisk { color: var(--klassisk); background: var(--klassisk-bg); border-color: var(--klassisk); }
+.disc-tag--skoyting { color: var(--skoyting); background: var(--skoyting-bg); border-color: var(--skoyting); }

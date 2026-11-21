@@ -1,0 +1,71 @@
+.state {
+  display: grid;
+  justify-items: center;
+  gap: var(--s3);
+  padding: var(--s8) var(--s4);
+  border: var(--line) solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  text-align: center;
+}
+.state p { max-width: 36ch; }
+.state__icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--r-full);
+  background: var(--ice);
+  color: var(--primary);
+}
+.state--error { border-color: var(--error); }
+.state--error .state__icon { background: var(--error-bg); color: var(--error); }
+
+.state--steps { justify-items: stretch; text-align: left; }
+.steps { display: grid; gap: var(--s3); margin: 0; padding: 0; list-style: none; }
+.steps__item { display: flex; align-items: center; gap: var(--s3); min-height: 40px; color: var(--text-2); }
+.steps__mark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border: var(--line) solid var(--border);
+  border-radius: var(--r-full);
+  font-weight: 700;
+  font-size: var(--fs-help);
+}
+.steps__item.is-active { color: var(--text); font-weight: 650; }
+.steps__item.is-active .steps__mark { border-color: var(--primary); border-width: 3px; color: var(--primary); }
+.steps__item.is-done { color: var(--text); }
+.steps__item.is-done .steps__mark { background: var(--ok-bg); border-color: var(--ok); color: var(--ok); }
+
+.skeleton { display: grid; gap: var(--s3); }
+.skeleton__line {
+  height: 20px;
+  border-radius: var(--r-sm);
+  background: var(--border);
+  opacity: 0.6;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+.skeleton__line:nth-child(3n) { width: 60%; }
+.skeleton__line:nth-child(3n + 2) { width: 85%; }
+@keyframes pulse {
+  50% { opacity: 0.3; }
+}
+
+.offline,
+.banner {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  padding: var(--s3) var(--s4);
+  border: var(--line) solid;
+  border-radius: var(--r-md);
+  font-weight: 500;
+}
+.banner { border-color: transparent; }
+.offline { color: var(--text); background: var(--ice); border-color: var(--primary); border-style: dashed; }
+.banner--ok { color: var(--ok); background: var(--ok-bg); border-color: var(--ok); }
+.banner--warn { color: var(--warn); background: var(--warn-bg); border-color: var(--warn); }
+.offline svg, .banner svg { flex: none; }

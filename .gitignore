@@ -1,0 +1,7 @@
+.env
+.gotmp/
+/smoreappen
+*.exe
+node_modules/
+internal/webui/dist/*
+!internal/webui/dist/robots.txt

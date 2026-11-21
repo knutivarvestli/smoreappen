@@ -1,0 +1,86 @@
+.temp {
+  display: grid;
+  gap: var(--s2);
+  padding: var(--s3) var(--s3) var(--s2);
+  border: var(--line) solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+}
+.temp__label { color: var(--text-2); }
+.temp__row {
+  display: grid;
+  grid-template-columns: var(--tap) 1fr var(--tap);
+  align-items: center;
+  gap: var(--s2);
+}
+.temp__step {
+  display: grid;
+  place-items: center;
+  width: var(--tap);
+  height: var(--tap);
+  border: var(--line) solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+.temp__step:hover { background: var(--ice); border-color: var(--text-2); }
+.temp__step:disabled { color: var(--text-2); cursor: not-allowed; background: var(--bg); border-style: dashed; }
+
+.temp__display {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  min-width: 0;
+}
+.temp__input {
+  width: 100%;
+  min-width: 0;
+  max-width: 5ch;
+  padding: 0;
+  border: none;
+  border-bottom: var(--line) dashed transparent;
+  background: transparent;
+  color: var(--text);
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-align: right;
+}
+.temp__input:hover { border-bottom-color: var(--border); }
+.temp__input:focus-visible { outline-offset: 4px; border-radius: var(--r-sm); }
+.temp__input::placeholder {
+  font-size: 1.375rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--text-2);
+  text-align: center;
+}
+.temp__input:placeholder-shown { max-width: 100%; text-align: center; }
+.temp__input[aria-invalid="true"] { border-bottom-color: var(--error); }
+.temp__unit {
+  margin-left: var(--s1);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--text-2);
+}
+
+.temp__slider {
+  width: 100%;
+  height: 40px;
+  margin: 0;
+  accent-color: var(--text-2);
+  cursor: pointer;
+}
+.temp__clear {
+  justify-self: start;
+  min-height: var(--tap);
+  padding: 0 var(--s2);
+  border: none;
+  background: none;
+  color: var(--text-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}

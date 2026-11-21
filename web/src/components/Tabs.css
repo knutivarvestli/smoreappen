@@ -1,0 +1,18 @@
+.tabs {
+  display: flex;
+  border-bottom: var(--line) solid var(--border);
+}
+.tabs__tab {
+  flex: 1;
+  min-height: var(--tap);
+  border: none;
+  border-bottom: 3px solid transparent;
+  margin-bottom: calc(-1 * var(--line));
+  background: transparent;
+  color: var(--text-2);
+  font-weight: 500;
+  cursor: pointer;
+}
+.tabs__tab:hover { color: var(--text); }
+.tabs__tab.is-active { color: var(--text); font-weight: 700; border-bottom-color: var(--primary); }
+.tabs__tab:focus-visible { outline-offset: -3px; }

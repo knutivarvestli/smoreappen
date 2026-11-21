@@ -1,0 +1,7 @@
+.mountains {
+  display: block;
+  width: 100%;
+  height: 72px;
+}
+.mountains__back { fill: var(--mountain-back); }
+.mountains__front { fill: var(--mountain-front); }

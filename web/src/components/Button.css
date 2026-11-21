@@ -1,0 +1,74 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s2);
+  min-height: var(--tap);
+  padding: 0 var(--s5);
+  border: var(--line) solid transparent;
+  border-radius: var(--r-md);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  -webkit-tap-highlight-color: transparent;
+}
+.btn--lg { min-height: 56px; font-size: 1.0625rem; font-weight: 700; }
+.btn--block { width: 100%; }
+
+.btn--primary { background: var(--primary); color: var(--on-primary); }
+.btn--primary:hover { filter: brightness(1.12); }
+
+.btn--secondary { background: var(--surface); color: var(--text); border-color: var(--border); }
+.btn--secondary:hover { background: var(--ice); border-color: var(--text-2); }
+
+.btn--tertiary { background: transparent; color: var(--text-2); }
+.btn--tertiary:hover { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+
+.btn--destructive { background: var(--surface); color: var(--error); border-color: var(--error); }
+.btn--destructive:hover { background: var(--error-bg); }
+
+/* Dashed "add" button: «+ Legg til rill» */
+.btn--add { background: transparent; color: var(--text); border-color: var(--border); border-style: dashed; font-weight: 500; }
+.btn--add:hover { background: var(--surface); border-color: var(--text-2); }
+
+.btn:active:not(:disabled) { transform: translateY(1px); }
+
+.btn:disabled {
+  cursor: not-allowed;
+  background: var(--bg);
+  color: var(--text-2);
+  border-color: var(--border);
+  border-style: dashed;
+  filter: none;
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: var(--tap);
+  height: var(--tap);
+  border: var(--line) solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+.icon-btn:hover { background: var(--ice); border-color: var(--text-2); }
+.icon-btn--bare { border-color: transparent; background: transparent; }
+.icon-btn--bare:hover { border-color: transparent; }
+.icon-btn:disabled { color: var(--text-2); cursor: not-allowed; background: transparent; }
+
+.fab {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: var(--r-full);
+  background: var(--primary);
+  color: var(--on-primary);
+  cursor: pointer;
+}
+.fab:hover { filter: brightness(1.12); }

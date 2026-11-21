@@ -1,0 +1,71 @@
+/* Shared layout for screens */
+.page { display: grid; gap: var(--s3); padding-bottom: var(--s4); }
+.page__group { margin-top: var(--s2); font-size: var(--fs-body); font-weight: 600; color: var(--text-2); }
+.page__list { display: grid; gap: var(--s2); margin: 0; padding: 0; list-style: none; }
+.page__or { text-align: center; }
+.page__note { text-align: center; padding: var(--s2) 0; }
+.page__row2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); }
+
+/* Main action always visible at the bottom of step forms */
+.page__footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  display: grid;
+  gap: var(--s2);
+  margin: 0 calc(-1 * var(--s4));
+  padding: var(--s3) var(--s4) calc(var(--s3) + env(safe-area-inset-bottom));
+  border-top: var(--line) solid var(--border);
+  background: var(--bg);
+}
+
+.with-icon { display: inline-flex; align-items: center; gap: var(--s1); }
+
+/* Disclosure «Flere detaljer» */
+.more {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: var(--tap);
+  padding: 0 var(--s1);
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+}
+.more svg { transition: transform var(--dur) var(--ease); }
+.more[aria-expanded="true"] svg { transform: rotate(180deg); }
+.more__body { display: grid; gap: var(--s3); }
+
+.ski-velg { border: 0; margin: 0; padding: 0; min-width: 0; }
+.ski-velg legend { padding: 0; margin-bottom: var(--s2); }
+
+/* Selectable card (ski choice) */
+.choice {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  min-height: 56px;
+  padding: var(--s2) var(--s4);
+  border: var(--line) solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  cursor: pointer;
+}
+.choice.is-checked { border-color: var(--primary); border-width: 3px; background: var(--ice); }
+.choice.is-disabled { cursor: not-allowed; color: var(--text-2); border-style: dashed; background: var(--bg); }
+.choice:has(input:focus-visible) { outline: 3px solid var(--focus); outline-offset: 2px; }
+.choice__box {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border: var(--line) solid var(--text-2);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--primary);
+}
+.choice__text { display: grid; flex: 1; min-width: 0; }

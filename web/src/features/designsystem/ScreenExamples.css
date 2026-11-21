@@ -1,0 +1,21 @@
+.examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+  gap: var(--s6);
+  align-items: start;
+}
+.frame { display: grid; gap: var(--s2); margin: 0; }
+.frame__screen {
+  max-width: 390px;
+  padding: 0 var(--s4) var(--s4);
+  border: var(--line) solid var(--border);
+  border-radius: 24px;
+  background: var(--bg);
+  overflow: hidden;
+}
+.screen { display: grid; gap: var(--s3); }
+.screen .top-bar--mountains { margin-bottom: 0; }
+.screen__group { margin-top: var(--s2); font-size: var(--fs-body); color: var(--text-2); font-weight: 600; }
+.screen__or { text-align: center; }
+.screen__list { display: grid; gap: var(--s2); margin: 0; padding: 0; list-style: none; }
+.with-icon { display: inline-flex; align-items: center; gap: var(--s1); }

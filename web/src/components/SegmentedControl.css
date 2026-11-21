@@ -1,0 +1,64 @@
+.seg {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.seg__legend {
+  padding: 0;
+  margin-bottom: var(--s2);
+  color: var(--text-2);
+}
+.seg__track {
+  display: flex;
+  border: var(--line) solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  padding: 3px;
+  gap: 3px;
+}
+.seg__opt {
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s1);
+  min-height: calc(var(--tap) - 6px);
+  padding: 0 var(--s2);
+  border: var(--line) solid transparent;
+  border-radius: calc(var(--r-md) - 3px);
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  color: var(--text-2);
+  transition: background-color var(--dur) var(--ease);
+}
+.seg__opt:hover { background: var(--bg); }
+.seg__opt.is-checked {
+  background: var(--ice);
+  border-color: var(--primary);
+  color: var(--text);
+}
+.seg__opt:has(input:focus-visible) {
+  outline: 3px solid var(--focus);
+  outline-offset: 1px;
+}
+.seg__opt--klassisk.is-checked { background: var(--klassisk-bg); border-color: var(--klassisk); }
+.seg__opt--skoyting.is-checked { background: var(--skoyting-bg); border-color: var(--skoyting); }
+.seg:disabled .seg__opt { cursor: not-allowed; opacity: 0.6; }
+
+/* Split: separate buttons. Selected = accent background, thick border and bold text. */
+.seg--split .seg__track { border: 0; background: transparent; padding: 0; gap: var(--s2); }
+.seg--split .seg__opt {
+  min-height: 56px;
+  gap: var(--s2);
+  border-color: var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 500;
+}
+.seg--split .seg__opt:hover { border-color: var(--text-2); }
+.seg--split .seg__opt.is-checked { border-width: 3px; font-weight: 700; background: var(--ice); border-color: var(--primary); }
+.seg--split .seg__opt--klassisk.is-checked { background: var(--klassisk-bg); border-color: var(--klassisk); }
+.seg--split .seg__opt--skoyting.is-checked { background: var(--skoyting-bg); border-color: var(--skoyting); }

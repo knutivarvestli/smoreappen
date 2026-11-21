@@ -1,0 +1,33 @@
+# Render Blueprint. Do not apply until the owner has confirmed pricing (docs/DRIFT.md).
+services:
+  - type: web
+    name: smoreappen
+    runtime: docker
+    plan: starter          # never free; check current plans in Render Dashboard
+    region: frankfurt
+    healthCheckPath: /healthz
+    preDeployCommand: /app/smoreappen migrate
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase: { name: smoreappen-db, property: connectionString }
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: APP_BASE_URL
+        sync: false
+      - key: EMAIL_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: LLM_MODEL
+        sync: false
+      - key: LLM_DAILY_CALL_LIMIT
+        value: "100"
+
+databases:
+  - name: smoreappen-db
+    region: frankfurt
+    plan: basic-256mb      # never free; confirm price and backup coverage in Dashboard

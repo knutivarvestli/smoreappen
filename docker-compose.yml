@@ -1,0 +1,59 @@
+# Local development. Same environment variables as production (see .env.example).
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: smore
+      POSTGRES_PASSWORD: smore
+      POSTGRES_DB: smoreappen
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U smore -d smoreappen"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+
+  migrate:
+    build: .
+    command: ["/app/smoreappen", "migrate"]
+    env_file: [{ path: .env, required: false }]
+    environment:
+      DATABASE_URL: postgres://smore:smore@db:5432/smoreappen?sslmode=disable
+    depends_on:
+      db: { condition: service_healthy }
+
+  app:
+    build: .
+    env_file: [{ path: .env, required: false }]
+    environment:
+      DATABASE_URL: postgres://smore:smore@db:5432/smoreappen?sslmode=disable
+      APP_BASE_URL: http://localhost:8080
+      DEV_INSECURE_COOKIES: "true"
+    ports:
+      - "8080:8080"
+    depends_on:
+      migrate: { condition: service_completed_successfully }
+
+  # Runs `go test ./...` against the db service. Used by `make test`.
+  test:
+    image: golang:1.27-alpine
+    working_dir: /src
+    volumes:
+      - .:/src
+      - gocache:/root/.cache/go-build
+      - gomod:/go/pkg/mod
+    environment:
+      CGO_ENABLED: "0"
+      TEST_DATABASE_URL: postgres://smore:smore@db:5432/smoreappen?sslmode=disable
+    command: ["sh", "-c", "go vet ./... && go test ./..."]
+    depends_on:
+      db: { condition: service_healthy }
+    profiles: ["test"]
+
+volumes:
+  pgdata:
+  gocache:
+  gomod:

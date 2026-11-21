@@ -1,0 +1,77 @@
+.pick {
+  border: var(--line) solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  overflow: hidden;
+}
+.pick.is-open { border-color: var(--primary); }
+
+.pick__row {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  width: 100%;
+  min-height: 56px;
+  padding: var(--s2) var(--s4);
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+.pick__row:hover { background: var(--bg); }
+.pick__row:focus-visible { outline-offset: -3px; }
+.pick__icon { flex: none; color: var(--text); }
+.pick__text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--s4);
+  flex: 1;
+  min-width: 0;
+}
+.pick__label { color: var(--text-2); font-size: var(--fs-help); }
+.pick__value { font-weight: 600; overflow-wrap: anywhere; }
+.pick__value.is-empty { font-weight: 400; color: var(--text-2); }
+.pick__chev { flex: none; color: var(--text-2); transition: transform var(--dur) var(--ease); }
+.pick.is-open .pick__chev { transform: rotate(180deg); }
+
+.pick__list {
+  display: grid;
+  margin: 0;
+  padding: var(--s1) 0 var(--s2);
+  border: 0;
+  border-top: var(--line) solid var(--border);
+}
+.pick__opt {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  min-height: var(--tap);
+  padding: 0 var(--s4);
+  cursor: pointer;
+}
+.pick__opt:hover { background: var(--bg); }
+.pick__opt.is-checked { background: var(--ice); font-weight: 600; }
+.pick__opt:has(input:focus-visible) { outline: 3px solid var(--focus); outline-offset: -3px; }
+.pick__mark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border: var(--line) solid var(--text-2);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--primary);
+}
+.pick__opt.is-checked .pick__mark { border-color: var(--primary); }
+.pick__done {
+  margin: var(--s2) var(--s4) 0;
+  min-height: var(--tap);
+  border: var(--line) solid var(--primary);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--primary);
+  font-weight: 650;
+  cursor: pointer;
+}

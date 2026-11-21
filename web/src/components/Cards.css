@@ -1,0 +1,67 @@
+.card {
+  display: flex;
+  width: 100%;
+  border: var(--line) solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+button.card:hover { border-color: var(--text-2); }
+
+/* SkiCard */
+.ski-card {
+  align-items: center;
+  gap: var(--s3);
+  min-height: 56px;
+  padding: var(--s3) var(--s4);
+}
+.ski-card__stripe {
+  flex: none;
+  align-self: stretch;
+  width: 6px;
+  min-height: 20px;
+  max-height: 40px;
+  margin: auto 0;
+  border-radius: var(--r-full);
+}
+.ski-card--klassisk .ski-card__stripe { background: var(--klassisk); }
+.ski-card--skoyting .ski-card__stripe { background: var(--skoyting); }
+.ski-card__body { display: grid; flex: 1; min-width: 0; }
+.ski-card__name { font-weight: 500; }
+.ski-card__meta { color: var(--text-2); font-size: var(--fs-help); }
+
+.chip-muted {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s1);
+  flex: none;
+  padding: 2px var(--s2);
+  border-radius: var(--r-sm);
+  background: var(--bg);
+  color: var(--text-2);
+  font-size: var(--fs-label);
+  font-weight: 600;
+}
+.ski-card.is-sold .chip-muted { border: var(--line) solid var(--border); }
+
+/* ProductCard */
+.product-card { align-items: center; gap: var(--s3); min-height: 56px; padding: var(--s3) var(--s4); }
+.product-card__body { display: grid; flex: 1; min-width: 0; }
+.product-card__name { font-weight: 500; }
+.product-card__meta { color: var(--text-2); font-size: var(--fs-help); }
+
+/* Result cards in «Finn» */
+.result-card {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s1);
+  padding: var(--s3) var(--s4) var(--s4);
+}
+.result-card--min { border-color: var(--mine); }
+.result-card__badges { display: flex; flex-wrap: wrap; gap: var(--s1); margin-bottom: var(--s1); }
+.result-card__title { font-size: 1.5rem; font-weight: 600; line-height: 1.2; }
+.result-card__text { color: var(--text-2); font-size: var(--fs-help); }
+
+.src--chip { border-color: transparent; }

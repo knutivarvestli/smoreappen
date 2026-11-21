@@ -1,0 +1,6 @@
+.env
+.git
+.gotmp
+**/node_modules
+docs
+internal/webui/dist
