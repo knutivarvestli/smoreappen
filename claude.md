@@ -6,7 +6,8 @@ Personlig smøre-assistent og erfaringsdatabase for langrenn (klassisk og skøyt
 
 Les i denne rekkefølgen før du skriver kode:
 
-1. `docs/SPEC_NEW.md`: hva appen er, skjermer, datamodell, komponenter, byggerekkefølge.2. `docs/AUTH.md`: innlogging, sessions, glemt passord, e-post.
+1. `docs/SPEC_NEW.md`: hva appen er, skjermer, datamodell, komponenter, byggerekkefølge.
+2. `docs/AUTH.md`: innlogging, sessions, glemt passord, e-post.
 3. `docs/INNHENTING.md`: henting fra URL og bilde, sikkerhet, JSON-skjemaer, fasit for tester.
 4. `docs/DRIFT.md`: Render, miljøvariabler, plan, lokal utvikling.
 5. `readme_design.md`: opprinnelig designbrief. Bakgrunn for det SPEC_NEW.md ikke sier noe om.
