@@ -53,6 +53,10 @@ Beslutninger tatt der dokumentasjonen var uklar eller manglet. Nyeste nederst.
 - Standardmetode når et lag legges til: glider fast → Stryk på, flytende → Tynt lag, pulver → Pulver, festevoks → Kork inn, klister → Tynt lag, bindevoks → Stryk på. Smørejerntemperatur fylles inn fra produktet.
 - Bytte disiplin til skøyting fjerner festelag og ski av feil disiplin fra valget.
 
+## Opprydding
+
+- `readme.md` og `docs/SPEC.md` er slettet. Begge var utgått (se steg 1). `docs/SPEC_NEW.md` er spesifikasjonen.
+
 ## Drift
 
 - **`render.yaml`:** `preDeployCommand` bruker full sti `/app/smoreappen migrate`. `UPLOAD_DIR` er utelatt fordi bilder ikke lagres.

@@ -6,16 +6,16 @@ Personlig smøre-assistent og erfaringsdatabase for langrenn (klassisk og skøyt
 
 Les i denne rekkefølgen før du skriver kode:
 
-1. `docs/SPEC_NEW.md`: hva appen er, skjermer, datamodell, komponenter, byggerekkefølge. (`docs/SPEC.md` er en avkuttet eldre versjon. Der dette dokumentet sier SPEC.md, gjelder SPEC_NEW.md.)
+1. `docs/SPEC_NEW.md`: hva appen er, skjermer, datamodell, komponenter, byggerekkefølge.
 2. `docs/AUTH.md`: innlogging, sessions, glemt passord, e-post.
 3. `docs/INNHENTING.md`: henting fra URL og bilde, sikkerhet, JSON-skjemaer, fasit for tester.
 4. `docs/DRIFT.md`: Render, miljøvariabler, plan, lokal utvikling.
-5. `readme_design.md`: opprinnelig designbrief. Bakgrunn for det SPEC.md ikke sier noe om.
+5. `readme_design.md`: opprinnelig designbrief. Bakgrunn for det SPEC_NEW.md ikke sier noe om.
 6. `docs/design/*.png`: skjermbilder av prototypene. Visuell fasit for layout, felt og tilstander.
 
-**Hvem vinner ved uenighet:** AUTH.md overstyrer DRIFT.md om innlogging og miljøvariabler (DRIFT.md nevner fortsatt `APP_PASSWORD_HASH`, som er utgått). SPEC.md overstyrer `readme_design.md`. Skjermbildene viser utseende, SPEC.md avgjør innhold. Er noe uklart, velg den enkleste løsningen og skriv antagelsen i `docs/ANTAGELSER.md`.
+**Hvem vinner ved uenighet:** AUTH.md overstyrer DRIFT.md om innlogging og miljøvariabler (DRIFT.md nevner fortsatt `APP_PASSWORD_HASH`, som er utgått). SPEC_NEW.md overstyrer `readme_design.md`. Skjermbildene viser utseende, SPEC_NEW.md avgjør innhold. Er noe uklart, velg den enkleste løsningen og skriv antagelsen i `docs/ANTAGELSER.md`.
 
-Datamodellen er SPEC.md seksjon 6 pluss tabellene i AUTH.md (`users`, `sessions`, `password_tokens`, `auth_hendelser`).
+Datamodellen er SPEC_NEW.md seksjon 6 pluss tabellene i AUTH.md (`users`, `sessions`, `password_tokens`, `auth_hendelser`).
 
 ## Regler som alltid gjelder
 
@@ -50,12 +50,12 @@ Datamodellen er SPEC.md seksjon 6 pluss tabellene i AUTH.md (`users`, `sessions`
 - Kontrast minst WCAG AA, helst AAA for temperatur og anbefalinger.
 - Lys og mørk modus fra start. Respekter «reduser bevegelse». Synlig fokus og tastaturnavigasjon.
 - Tekst: sentence case, ingen utropstegn i systemtekst, verb først på knapper, «din/dine» i systemtekst (men «Min erfaring» er et egennavn).
-- Komponentnavn som i SPEC.md seksjon 8.
+- Komponentnavn som i SPEC_NEW.md seksjon 8.
 
 ## Teknisk
 
 - Foreslått stack: Go-backend, PostgreSQL, React + TypeScript. Avvik skal begrunnes i `docs/ANTAGELSER.md`.
-- Identifikatorer i database og API følger SPEC.md seksjon 6 (norske navn uten æøå). Kommentarer og commit-meldinger: engelsk.
+- Identifikatorer i database og API følger SPEC_NEW.md seksjon 6 (norske navn uten æøå). Kommentarer og commit-meldinger: engelsk.
 - Språkmodell-kall og e-post ligger bak grensesnitt (`Extractor`, `Mailer`) med mock-implementasjoner for tester og lokal kjøring. Mock leser fasit fra INNHENTING.md.
 - Bruk velprøvde biblioteker for passordhash, tokens og sessions. Ikke skriv egen kryptografi.
 - Kommandoer for bygg, test og lint. Kjøres fra WSL (Ubuntu) i prosjektmappen. Gruppepolicy på Windows blokkerer lokalt bygde .exe-filer, så alt kjører i Docker.
