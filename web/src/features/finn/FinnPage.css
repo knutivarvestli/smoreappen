@@ -13,9 +13,15 @@
 }
 .resultater__tittel { font-size: var(--fs-heading); }
 .resultater__forklaring { font-size: var(--fs-label); }
-/* Lower top bar so three tips and the two buttons fit on a phone */
-.resultater .top-bar { min-height: 52px; padding: var(--s1) 0 0; }
-.resultater .top-bar__title { font-size: 1.25rem; }
+.erfaringer__rolle { margin-top: -4px; color: var(--text-2); }
+.resultater__panel { display: grid; gap: 6px; }
+/* Compact conditions line so three tips and the two buttons fit on a phone */
+.resultater { padding-top: var(--s2); }
+.resultater .conditions__main { font-size: 0.9375rem; }
+/* Low screens with the grip/glide tabs: drop the explanation line to keep the buttons visible */
+@media (max-height: 660px) {
+  .resultater--faner .resultater__forklaring { display: none; }
+}
 .resultater .conditions { min-height: var(--tap); padding-block: var(--s1); }
 .resultater__detaljer {
   display: grid;

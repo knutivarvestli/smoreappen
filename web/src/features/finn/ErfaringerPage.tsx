@@ -3,19 +3,25 @@ import { ExperienceResultCard, TipCard } from '../../components/Cards'
 import { Icon } from '../../components/Icon'
 import { TopBar } from '../../components/Navigation'
 import { EmptyState } from '../../components/States'
-import { useTreff } from './treff'
+import { ROLLE_NAVN, useRolle, useTreff } from './treff'
 import '../../styles/page.css'
 import './FinnPage.css'
 
-/** Details behind «Mine erfaringer» or «Andres erfaringer» on the results view. */
+/** Details behind «Mine erfaringer» or «Andres erfaringer» on the results view (same role as the tab). */
 export function ErfaringerPage({ hvem }: { hvem: 'mine' | 'andre' }) {
   const navigate = useNavigate()
-  const { egne, andre, domene } = useTreff()
+  const { rolle, roller } = useRolle()
+  const { egne, andre, domene } = useTreff(rolle)
   const uenige = new Set(andre.map((t) => t.kildeId)).size > 1
+  const klassisk = roller.length > 1
 
   return (
     <div className="page page--tight">
-      <TopBar title={hvem === 'mine' ? 'Mine erfaringer' : 'Andres erfaringer'} onBack={() => navigate('/resultater')} />
+      <TopBar
+        title={hvem === 'mine' ? 'Mine erfaringer' : 'Andres erfaringer'}
+        onBack={() => navigate(`/resultater${klassisk && rolle !== roller[0] ? `?rolle=${rolle}` : ''}`)}
+      />
+      {klassisk && <p className="label erfaringer__rolle">{ROLLE_NAVN[rolle]}, klassisk</p>}
 
       {hvem === 'mine' ? (
         egne.length === 0 ? (

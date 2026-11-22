@@ -12,6 +12,8 @@
   border-radius: var(--r-md);
   background: var(--surface);
 }
+.spor__rolle { display: grid; gap: var(--s2); }
+.spor__rolletittel { font-size: var(--fs-help); font-weight: 600; color: var(--text-2); }
 .spor__tekst {
   padding: var(--s3);
   border-left: 4px solid var(--mine);

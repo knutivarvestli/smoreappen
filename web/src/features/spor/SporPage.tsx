@@ -7,8 +7,8 @@ import { TopBar } from '../../components/Navigation'
 import { EmptyState } from '../../components/States'
 import { TextField } from '../../components/TextField'
 import { useDemo } from '../../demo/DemoStore'
-import { innenfor, OPPSKRIFTER, type Oppskrift } from '../../demo/erfaring'
-import { DISIPLIN, GLID_MOT_FELT, SNOOPPRINNELSE, SNOTYPE, type Konfidens } from '../../lib/domene'
+import { innenfor, OPPSKRIFTER, type EksempelRenn, type Oppskrift, type SmoreRolle } from '../../demo/erfaring'
+import { DISIPLIN, FESTE, GLID_MOT_FELT, SNOOPPRINNELSE, SNOTYPE, type Konfidens } from '../../lib/domene'
 import { formatNumber, formatTemp } from '../../lib/format'
 import { tolk, trengerOppklaring, type Filter, type Oppklaring } from './tolk'
 import '../../styles/page.css'
@@ -42,18 +42,34 @@ function forholdTekst(f: Filter): string {
   return deler.length ? deler.join(' ') : 'alle forhold'
 }
 
-/** Template answer from computed data. Always says how many races and when the last one was. */
+/** Roles to answer for: classic has grip and glide (grip first), skate glide only. */
+const rollerFor = (f: Filter): SmoreRolle[] => (f.disiplin === 'klassisk' ? ['feste', 'glid'] : ['glid'])
+
+/**
+ * Template answer from computed data, one sentence per role. Always says how
+ * many races and when the last one was.
+ */
 function svartekst(f: Filter, rangert: Rangert[]): string {
   if (rangert.length === 0) return 'Jeg har ikke data på dette ennå.'
-  const [beste, ...resten] = rangert
-  const total = new Set(rangert.flatMap((r) => r.treff.map((x) => x.id))).size
-  let s = `Ut fra ${total} renn på ${forholdTekst(f)} (siste ${beste.sist}) har ${beste.oppskrift} gjort det best for glid`
-  s += beste.direkte ? `: raskest i ${beste.direkte.seire} av ${beste.direkte.av} direkte sammenligninger.` : '.'
-  if (beste.konfidens === 'ett') s += ' Det bygger på ett renn, så tolk forsiktig.'
-  const tynn = resten.find((r) => r.konfidens === 'ett')
-  if (tynn) s += ` ${tynn.oppskrift} er brukt i ett renn, så tolk forsiktig.`
-  return s
+  return rollerFor(f)
+    .map((rolle) => {
+      const liste = rangert.filter((r) => r.rolle === rolle)
+      if (liste.length === 0) return `For ${rolle} har jeg ikke data på dette ennå.`
+      const [beste, ...resten] = liste
+      const total = new Set(liste.flatMap((r) => r.treff.map((x) => x.id))).size
+      let s = `Ut fra ${total} renn på ${forholdTekst(f)} (siste ${beste.sist}) har ${beste.oppskrift} gjort det best for ${rolle}`
+      s += beste.direkte ? `: raskest i ${beste.direkte.seire} av ${beste.direkte.av} direkte sammenligninger.` : '.'
+      if (beste.konfidens === 'ett') s += ' Det bygger på ett renn, så tolk forsiktig.'
+      const tynn = resten.find((r) => r.konfidens === 'ett')
+      if (tynn) s += ` ${tynn.oppskrift} er brukt i ett renn, så tolk forsiktig.`
+      return s
+    })
+    .join(' ')
 }
+
+/** «Glid: raskere» or «Feste: veldig bra» for a race. */
+const vurderingTekst = (r: EksempelRenn) =>
+  r.glid ? `Glid: ${GLID_MOT_FELT[r.glid].toLowerCase()}` : r.feste ? `Feste: ${FESTE[r.feste].toLowerCase()}` : 'Ikke vurdert'
 
 export function SporPage() {
   const navigate = useNavigate()
@@ -165,20 +181,29 @@ export function SporPage() {
           {rangert.length > 0 ? (
             <>
               <h2 className="page__group">Min erfaring</h2>
-              <ol className="page__list">
-                {rangert.map((r, i) => (
-                  <li key={r.id}>
-                    <ExperienceResultCard
-                      rangering={i + 1}
-                      oppskrift={r.oppskrift}
-                      konfidens={r.konfidens}
-                      antallRenn={r.antall}
-                      sistBrukt={r.sist}
-                      direkte={r.direkte}
-                    />
-                  </li>
-                ))}
-              </ol>
+              {rollerFor(filter).map((rolle) => {
+                const liste = rangert.filter((r) => r.rolle === rolle)
+                if (liste.length === 0) return null
+                return (
+                  <div key={rolle} className="spor__rolle">
+                    {filter.disiplin === 'klassisk' && <h3 className="spor__rolletittel">{rolle === 'feste' ? 'Feste' : 'Glid'}</h3>}
+                    <ol className="page__list">
+                      {liste.map((r, i) => (
+                        <li key={r.id}>
+                          <ExperienceResultCard
+                            rangering={i + 1}
+                            oppskrift={r.oppskrift}
+                            konfidens={r.konfidens}
+                            antallRenn={r.antall}
+                            sistBrukt={r.sist}
+                            direkte={r.direkte}
+                          />
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
+                )
+              })}
               <button type="button" className="more" aria-expanded={visRenn} aria-controls="renn-bak" onClick={() => setVisRenn(!visRenn)}>
                 Se rennene bak svaret ({alleRenn.length})
                 <Icon name="chevronDown" />
@@ -186,13 +211,13 @@ export function SporPage() {
               {visRenn && (
                 <ul id="renn-bak" className="page__list">
                   {alleRenn.map((r) => (
-                    <li key={r.id}>
+                    <li key={`${r.id}-${r.oppskrift}`}>
                       <RaceCard
                         dato={r.dato}
                         sted={r.sted}
                         lufttemp={r.lufttemp}
                         forhold={`${SNOTYPE[r.snotype]}, ${SNOOPPRINNELSE[r.opprinnelse].toLowerCase()}`}
-                        vurdering={`Glid: ${GLID_MOT_FELT[r.glid].toLowerCase()}`}
+                        vurdering={vurderingTekst(r)}
                       />
                     </li>
                   ))}

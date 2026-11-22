@@ -113,12 +113,14 @@ const godkjent = (t: Omit<EksternTips, 'status' | 'mangler' | 'lag'> & Partial<E
 
 // Example tips (all fluor-free). Only approved tips are used in «Søk» and «Spør».
 const START_TIPS: EksternTips[] = [
-  godkjent({ id: 't1', kildeId: 'k1', disiplin: 'skoyting', fra: -8, til: -3, snotyper: ['nysno', 'finkornet'], sammendrag: 'Blokk i to lag, børst, pulver øverst.', sikkerhet: 'hoy', hentet: '3. jan. 2026' }),
-  godkjent({ id: 't2', kildeId: 'k2', disiplin: 'skoyting', fra: -10, til: -4, snotyper: ['finkornet'], sammendrag: 'Hard kaldvoks, stryk tynt og børst grundig på kunstsnø.', sikkerhet: 'hoy', hentet: '12. des. 2025' }),
-  godkjent({ id: 't3', kildeId: 'k3', disiplin: 'skoyting', fra: -6, til: -1, snotyper: ['finkornet'], sammendrag: 'Universalblokk og lett rill når snøen er finkornet.', sikkerhet: 'middels', hentet: '28. nov. 2025' }),
-  godkjent({ id: 't4', kildeId: 'k2', disiplin: 'klassisk', fra: -6, til: -2, snotyper: ['finkornet'], sammendrag: 'Hardvoks i tre tynne lag, kork mellom hvert lag.', sikkerhet: 'hoy', hentet: '20. des. 2025' }),
-  godkjent({ id: 't5', kildeId: 'k1', disiplin: 'klassisk', fra: -12, til: -5, snotyper: ['nysno'], sammendrag: 'Bindevoks under, kald festevoks i fire lag ved kunstsnø.', sikkerhet: 'middels', hentet: '3. jan. 2026' }),
-  godkjent({ id: 't6', kildeId: 'k3', disiplin: 'klassisk', fra: -4, til: 1, snotyper: ['gammel_omdannet'], sammendrag: 'Klister på gammel snø, festevoks oppå når det er kaldt.', sikkerhet: 'middels', hentet: '15. jan. 2026' }),
+  godkjent({ id: 't1', kildeId: 'k1', disiplin: 'skoyting', fra: -8, til: -3, snotyper: ['nysno', 'finkornet'], sammendrag: 'Blokk i to lag, børst, pulver øverst.', sikkerhet: 'hoy', hentet: '3. jan. 2026', lag: [{ rolle: 'glid', produkt: 'Blokk' }, { rolle: 'glid', produkt: 'Pulver' }] }),
+  godkjent({ id: 't2', kildeId: 'k2', disiplin: 'skoyting', fra: -10, til: -4, snotyper: ['finkornet'], sammendrag: 'Hard kaldvoks, stryk tynt og børst grundig på kunstsnø.', sikkerhet: 'hoy', hentet: '12. des. 2025', lag: [{ rolle: 'glid', produkt: 'Hard kaldvoks' }] }),
+  godkjent({ id: 't3', kildeId: 'k3', disiplin: 'skoyting', fra: -6, til: -1, snotyper: ['finkornet'], sammendrag: 'Universalblokk og lett rill når snøen er finkornet.', sikkerhet: 'middels', hentet: '28. nov. 2025', lag: [{ rolle: 'glid', produkt: 'Universalblokk' }, { rolle: 'rill', produkt: 'Lett rill' }] }),
+  godkjent({ id: 't4', kildeId: 'k2', disiplin: 'klassisk', fra: -6, til: -2, snotyper: ['finkornet'], sammendrag: 'Hardvoks i tre tynne lag, kork mellom hvert lag.', sikkerhet: 'hoy', hentet: '20. des. 2025', lag: [{ rolle: 'feste', produkt: 'Hardvoks', metode: 'Kork inn' }] }),
+  godkjent({ id: 't5', kildeId: 'k1', disiplin: 'klassisk', fra: -12, til: -5, snotyper: ['nysno'], sammendrag: 'Bindevoks under, kald festevoks i fire lag ved kunstsnø.', sikkerhet: 'middels', hentet: '3. jan. 2026', lag: [{ rolle: 'feste', produkt: 'Bindevoks' }, { rolle: 'feste', produkt: 'Kald festevoks' }] }),
+  godkjent({ id: 't6', kildeId: 'k3', disiplin: 'klassisk', fra: -4, til: 1, snotyper: ['gammel_omdannet'], sammendrag: 'Klister på gammel snø, festevoks oppå når det er kaldt.', sikkerhet: 'middels', hentet: '15. jan. 2026', lag: [{ rolle: 'feste', produkt: 'Klister' }, { rolle: 'feste', produkt: 'Festevoks' }] }),
+  godkjent({ id: 't7', kildeId: 'k2', disiplin: 'klassisk', fra: -9, til: -3, snotyper: ['finkornet'], sammendrag: 'Kald blokk i to lag på glidsonene, børst godt.', sikkerhet: 'hoy', hentet: '20. des. 2025', lag: [{ rolle: 'glid', produkt: 'Kald blokk', metode: 'Stryk på' }] }),
+  godkjent({ id: 't8', kildeId: 'k3', disiplin: 'klassisk', fra: -5, til: 0, snotyper: ['finkornet', 'gammel_omdannet'], sammendrag: 'Universalglider og fin rill når det er rundt null.', sikkerhet: 'middels', hentet: '15. jan. 2026', lag: [{ rolle: 'glid', produkt: 'Universalglider' }, { rolle: 'rill', produkt: 'Fin rill' }] }),
 ]
 
 /** Example extraction for a new link (step 7 replaces this with the real Extractor). */

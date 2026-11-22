@@ -92,10 +92,12 @@ Skjermen het «Finn» tidligere. Hovedsiden har bare forholdene og selve søket.
 - Stor knapp **«Søk»** nederst. Ingen resultater på hovedsiden.
 
 **Resultater (`/resultater`):**
-- Forholdslinje øverst (disiplin · temp · snøtype, snøopprinnelse under) med «Endre», som går tilbake til hovedsiden med valgene beholdt.
+- Forholdslinje øverst (disiplin · temp · snøtype, snøopprinnelse under) med «Endre», som går tilbake til hovedsiden med valgene beholdt. Ingen egen toppfelt-rad: «Endre» og logoen tar deg tilbake, og plassen trengs til tipsene.
+- **Klassisk:** to faner, **Feste** og **Glid** (Feste valgt først), med tre smøretips hver. Feste og glid konkurrerer aldri om de samme plassene. **Skøyting:** bare glid, ingen faner. Rill regnes med glid.
 - **Tre smøretips** i én nummerert liste, sortert med egen erfaring tyngst. Hvert kort viser alltid kilden: «Min erfaring» med konfidensmerke, eller domenet for andres tips. Aldri blandet uten merking.
 - Sortering (prototype): egen erfaring vektes etter konfidens (Solid 3, Noe 2, Ett renn 1), andres godkjente tips etter sikkerhet (Høy 1,5, Middels 1, Lav 0,5). Solid og noe egen erfaring går dermed alltid foran andres tips. Ett enkelt eget renn kan havne bak et tips med høy sikkerhet. Ved lik vekt går egen erfaring først, så flest renn, så nærmest temperatur. Den ekte rangeringen (likhet, shrinkage) gjøres i backend.
-- Under lista: to knapper, **Mine erfaringer (N)** og **Andres erfaringer (N)**, som åpner detaljvisningene `/resultater/mine` og `/resultater/andre` med alle treff i hver gruppe. Knappen er deaktivert når gruppen er tom.
+- Under lista: to knapper, **Mine erfaringer (N)** og **Andres erfaringer (N)**, som åpner detaljvisningene `/resultater/mine` og `/resultater/andre` med alle treff i hver gruppe, for samme rolle som fanen (klassisk: «Feste, klassisk» eller «Glid, klassisk»). Tilbake går til samme fane. Knappen er deaktivert når gruppen er tom.
+- Et tips fra andre hører til feste og/eller glid ut fra lagene i tipset. Tips uten lag regnes for begge.
 - Visningen med tre tips og knappene skal passe uten skrolling ned til 360 × 640.
 - «Søk» i menyen er markert på resultatvisningen og detaljvisningene.
 - Kort er kompakte: kilde/domene, temperaturområde, én linje tekst (kuttes med «…»). Tips fra andre viser hentet-dato.
@@ -207,6 +209,7 @@ Se `readme_design.md` 6.4. Tillegg: svaret skiller tydelig mellom **egne renn** 
 
 - Rekkefølge i svaret: «Jeg søkte etter» (filterchips), kort svartekst, rangert liste under **Min erfaring** (nummerert, med direkte sammenligninger), «Se rennene bak svaret», og til slutt **Andres erfaringer** merket «Tips fra nettsider, ikke din egen erfaring».
 - Filterchips: disiplin byttes med ett trykk, temperatur og snøopprinnelse fjernes med ×.
+- **Klassisk:** svaret har én setning for feste og én for glid, og Min erfaring er delt i «Feste» og «Glid». Rennene bak svaret viser festevurdering (Slurer/OK/Veldig bra) for festeoppskrifter og glidvurdering for glidoppskrifter.
 - «Kald» uten tall og manglende disiplin gir et oppklaringsspørsmål med 2–4 trykkvalg. Spørsmålet tolkes aldri stille.
 - Språkmodellen lager bare filteret (validert JSON). Tall, rangering og konfidens beregnes i kode. Svarteksten bygger bare på beregnede tall.
 
