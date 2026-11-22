@@ -55,6 +55,7 @@ button.card:hover { border-color: var(--text-2); }
 /* Result cards in «Finn» */
 /* Compact: «Min erfaring» and «Andres erfaringer» fit on screen with the inputs */
 .result-card {
+  min-width: 0;
   flex-direction: column;
   align-items: stretch;
   gap: 2px;
