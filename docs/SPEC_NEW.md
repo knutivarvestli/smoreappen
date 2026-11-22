@@ -18,7 +18,7 @@ Personlig smøre-assistent og erfaringsdatabase for langrenn, **klassisk og skø
 
 Tre kjernefunksjoner:
 
-1. **Finn:** velg forhold, få anbefalinger.
+1. **Søk:** velg forhold, trykk Søk, få anbefalinger. (Het «Finn» i tidligere versjoner.)
 2. **Andres erfaringer:** lim inn lenker til blogger og smøretips, godkjenn utkast.
 3. **Logg:** logg renn med ski, smøring og vurdering. Over tid svarer appen på «hva har fungert best for meg ved …».
 
@@ -37,7 +37,11 @@ Tre kjernefunksjoner:
 
 Kald, ren, tydelig. Mye luft, tall som hovedpersoner. Ingen gradienter eller dekor. Tydelige kantlinjer (1,5 px) i stedet for skygger, fordi det fungerer i sterkt sollys. Avrunding 8–12 px. Trykkflater minst 48 px. Kontrast minst WCAG AA, helst AAA for temperatur og anbefalinger. Farge bærer aldri betydning alene: alltid ikon eller tekst i tillegg. Respekter «reduser bevegelse».
 
-Fjellsilhuett (to flate, lave lag) i toppen av «Finn» og på innloggingsskjermene.
+Fjellsilhuett (to flate, lave lag) i toppen av «Søk» og på innloggingsskjermene.
+
+**Logo:** eget merke (fjelltopp over to skispor) i primærfargen, sammen med teksten «Smøreappen». Følger lys og mørk modus. Samme merke er favicon. Se seksjon 4 for plassering.
+
+**Mobil og plass:** hovedsiden (Søk) skal passe på én skjerm uten skrolling ned til 360 × 640, med bunnmenyen synlig. Trykkflater blir aldri mindre enn 48 px for å få plass. Temperaturdisplayet bruker 48 px (nedre grense) der plassen er knapp.
 
 ### Fargetokens
 
@@ -64,7 +68,11 @@ Typografi: én nøytral sans-serif med tabulære sifre. Ekte minustegn (−, U+2
 
 ## 4. Navigasjon
 
-Mobil: bunnnavigasjon med 5 faner: **Finn · Spør · Logg (fremhevet «+») · Tips · Utstyr**. Innstillinger via ikon øverst. Desktop: fast sidemeny med samme struktur.
+Mobil: bunnnavigasjon med 5 faner: **Søk · Spør · Logg (fremhevet «+») · Tips · Utstyr**. Innstillinger via ikon øverst. Desktop: fast sidemeny med samme struktur.
+
+**Logo på alle sider:** logo og «Smøreappen» står øverst på alle sider, og et trykk går alltid til hovedsiden (Søk). Mobil: smal logolinje øverst. På Søk står logoen i fjellfeltet i stedet, så siden fortsatt passer uten skrolling. Desktop: øverst i sidemenyen.
+
+**Hovedvisninger og flyter:** hver skjerm er en egen visning. Hovedvisningene (Søk, Resultater, Spør, Tips, Utstyr) har bunnmeny. Skjema og stegvise flyter (Nytt renn, Nytt produkt, Sjekk produktet, ski-skjema, gjennomgang av tips, Innstillinger) vises i fullskjerm uten bunnmeny, med tilbake-pil og hovedhandlingen alltid synlig nederst.
 
 **Tips-fanen heter «Andres erfaringer»** (motstykke til «Min erfaring»).
 
@@ -72,13 +80,22 @@ Uinnlogget bruker ser kun innloggingsskjermene (seksjon 5.8). Alle andre ruter s
 
 ## 5. Skjermer og beslutninger
 
-### 5.1 Finn
+### 5.1 Søk (hovedsiden) og Resultater
 
+Skjermen het «Finn» tidligere. Hovedsiden har bare forholdene og selve søket. Resultatene vises i en egen visning.
+
+**Søk (hovedsiden, `/`):**
 - Disiplin-toggle (Klassisk/Skøyting) øverst. Valget huskes.
 - Stor temperaturvelger (stepper −/+, slider, direkte tall). Vises som display.
 - **Snøtype og snøopprinnelse er listevalg der kun én rad vises** (kollapset rad som åpner liste). Snøtype tillater flere valg. Andre forholdsfelt (fuktighet, hardhet, snøalder, vind, snøtemperatur) følger samme mønster.
-- Resultat i to merkede grupper: **Min erfaring** øverst (hvis data), **Andres erfaringer** under. Aldri blandet uten merking.
-- Kort er kompakte: kilde/domene, temperaturområde, én linje tekst.
+- Lenke **«Se værmeldingen på yr.no»** (`https://www.yr.no/nb`, åpnes i ny fane), så det er lett å sjekke været før man velger forhold.
+- Stor knapp **«Søk»** nederst. Ingen resultater på hovedsiden.
+
+**Resultater (`/resultater`):**
+- Forholdslinje øverst (disiplin · temp · snøtype, og snøopprinnelse) med «Endre», som går tilbake til hovedsiden med valgene beholdt.
+- Resultat i to merkede grupper: **Min erfaring** øverst (hvis data), **Andres erfaringer** under. Aldri blandet uten merking. Opptil tre kort per gruppe.
+- «Søk» i menyen er markert også her.
+- Kort er kompakte: kilde/domene, temperaturområde, én linje tekst (kuttes med «…»). Tips fra andre viser hentet-dato på samme linje som domenet.
 - Tom: «Ingen godkjente tips for disse forholdene. Legg til flere kilder?»
 - Hvis flere kilder passer men anbefaler ulike løsninger: vis «Kildene anbefaler ulike løsninger. Din egen erfaring teller tyngst.»
 - Min erfaring viser alltid antall renn og konfidensmerke (Solid erfaring / Noe erfaring / Ett renn).
@@ -101,7 +118,7 @@ Liste: navn, disiplin, merke + modell, lengde, vektområde, årsmodell, status. 
 
 **Solgt** = vises som «Ikke tilgjengelig», kan ikke velges i nye renn. Historikk og statistikk beholdes. Aldri slett ski som har renn.
 
-Forslag til senere: autoforslag fra tidligere brukte slip-tekster for jevn skrivemåte. «Annet» merke bør åpne et tekstfelt.
+«Annet» merke åpner et tekstfelt. Forslag til senere: autoforslag fra tidligere brukte slip-tekster for jevn skrivemåte.
 
 ### 5.3 Produkter (Utstyr → Produkter)
 
@@ -139,6 +156,8 @@ Forslag til senere: autoforslag fra tidligere brukte slip-tekster for jevn skriv
 - Handlinger per utkast: **Godkjenn · Rediger (temperaturområde) · Forkast**, og «Angre». Samlehandling: «Godkjenn alle med høy sikkerhet».
 - Statusmodell: `Utkast → Godkjent | Forkastet`. **Kun godkjente tips brukes i anbefalinger.**
 - Kildeliste: domene, antall godkjente tips, sist oppdatert, «Oppdater».
+- Samme domene kan ikke legges til to ganger. Da vises «… er allerede lagt til» med knappen «Oppdater kilden».
+- Gjennomgangen er en egen fullskjermsvisning. Behandlede utkast blir stående med status og «Angre» til brukeren trykker «Ferdig». Hovedsiden for Tips viser «N utkast venter» når noe ikke er gjennomgått.
 - Vis aldri hele artikkelteksten.
 - Tips fra andre skal vise dato de ble hentet (blogger kan være gamle).
 
@@ -183,7 +202,12 @@ Forslag, ikke krav: brukeren velger alltid selv. Testtilfeller står i `INNHENTI
 
 Se `readme_design.md` 6.4. Tillegg: svaret skiller tydelig mellom **egne renn** og **Andres erfaringer**. Konfidensmerke og «bygger på N renn» alltid synlig.
 
-### 5.7 Vurdering (steg 4, ikke prototypet ennå)
+- Rekkefølge i svaret: «Jeg søkte etter» (filterchips), kort svartekst, rangert liste under **Min erfaring** (nummerert, med direkte sammenligninger), «Se rennene bak svaret», og til slutt **Andres erfaringer** merket «Tips fra nettsider, ikke din egen erfaring».
+- Filterchips: disiplin byttes med ett trykk, temperatur og snøopprinnelse fjernes med ×.
+- «Kald» uten tall og manglende disiplin gir et oppklaringsspørsmål med 2–4 trykkvalg. Spørsmålet tolkes aldri stille.
+- Språkmodellen lager bare filteret (validert JSON). Tall, rangering og konfidens beregnes i kode. Svarteksten bygger bare på beregnede tall.
+
+### 5.7 Vurdering (steg 4 i Nytt renn, prototypet uten lagring)
 
 Se `readme_design.md` 5.5. Glid mot feltet (Langsommere/Lik/Raskere), rangering, feste (kun klassisk), stjerner, hvor sikker vurderingen er, notat.
 
@@ -234,23 +258,28 @@ Eksempeldata i prototypene (produktnavn merket «(eksempel)», Fischer Speedmax 
 
 **Visning:** `TipCard` (med `SourceBadge`), `ExperienceResultCard` (med `ConfidenceBadge`), `WaxLayerList` / `WaxLayerItem`, `ProductCard`, `SkiCard`, `RaceCard`, `ConditionsSummary`, `FilterChips`, `StatusBadge`, `FlagBadge` («Sjekk»/«Passer nå»), `StepProgress`, `ReviewBanner`, `Timeline`, `EmptyState`, `ErrorState`, `LoadingState`.
 
-**Navigasjon og overlays:** `AuthLayout` (fjellsilhuett + innhold), `BottomNav`, `SideNav`, `TopBar`, `BottomSheet`/`Dialog`, `Toast`, `ConfirmDialog`, `Tabs`, `Accordion`.
+**Skjemadeler (lagt til under prototypingen):** `SelectField` (innebygd nedtrekksvalg), `TempRangeField` («−3 til 0»), `SnowRowList` (festevoks etter snøtype), `LinkRow` (rad som åpner underside eller ekstern lenke), `SourceInfo` («Hentet fra nettside»).
+
+**Navigasjon og overlays:** `AuthLayout` (fjellsilhuett + innhold), `Brand` / `LogoMark` (logo + «Smøreappen», lenke til hovedsiden), `BottomNav`, `SideNav`, `TopBar` (med tilbake-pil, fjellfelt eller logo), `AppShell` (hovedvisning med bunnmeny eller flyt uten), `BottomSheet`/`Dialog`, `Toast`, `ConfirmDialog`, `Tabs`, `Accordion`.
 
 **Handlinger:** `Button` (primær, sekundær, tertiær, destruktiv; stor trykkflate), `IconButton`, `FloatingAddButton`.
 
 Alle komponenter: standard, hover, fokus, trykket, deaktivert, feil. Synlig fokus og tastaturnavigasjon på desktop. Skjermleseretiketter på ikoner, temperaturvelger og segmentvalg.
 
-## 9. Ikke bygget ennå / åpne punkter
+## 9. Status og åpne punkter
 
-- Steg 4 Vurdering og «Mangler vurdering»-flyt.
-- Spør-skjermen med skille mellom egne renn og andres erfaringer.
-- Rennliste, rennedetalj, innstillinger (kontodelen er beskrevet i `AUTH.md`, men ikke prototypet), onboarding.
-- Offline («lagret lokalt, synkroniseres senere»): tilstand skal finnes i designsystemet, selve offline kommer i fase 2.
-- «Annet» i merkelisten bør åpne tekstfelt.
-- Autoforslag for slip-tekst.
-- Desktop-layout (to kolonner, sidemeny) er ikke prototypet.
+**Finnes som klikkbar prototype i appen (eksempeldata i minnet, ingenting lagres):** Søk og Resultater, Spør, Andres erfaringer med gjennomgang, Utstyr (ski og produkter), Nytt produkt og Sjekk produktet, Nytt renn med alle fire steg og produktvelger, Innstillinger (tema), designsystem. Backend har datamodell og migreringer, men ingen API for disse ennå.
+
+**Ikke bygget ennå:**
+- Innlogging og konto (`AUTH.md`), og at alt annet ligger bak innlogging.
+- API og lagring for ski, produkter, renn, tips og vurdering. Ekte henting fra URL og bilde (`INNHENTING.md`), ekte rangering for Spør og Resultater.
+- «Mangler vurdering»-flyt, rennliste, rennedetalj, onboarding.
+- Smøring fra bilde og produktbeskrivelse («Oppsummer»).
+- Offline («lagret lokalt, synkroniseres senere»): tilstanden finnes i designsystemet, selve offline kommer i fase 2.
+- Værhenting inn i appen (fase 2). Til da lenker Søk til yr.no.
+- Autoforslag for slip-tekst. Egne snøtype-ikoner.
 - TOTP eller passkeys og flere brukere (se `AUTH.md`, «Senere»).
-- **Byggerekkefølge:** prosjektoppsett og datamodell → autentisering → ski → produkter (manuelt) → nytt renn med smøring → Finn → URL/bilde-innhenting → Andres erfaringer → Spør → vurdering, rennliste, innstillinger, onboarding, desktop → første deploy.
+- **Byggerekkefølge:** prosjektoppsett og datamodell → autentisering → ski → produkter (manuelt) → nytt renn med smøring → Søk og resultater → URL/bilde-innhenting → Andres erfaringer → Spør → vurdering, rennliste, innstillinger, onboarding, desktop → første deploy.
 
 ## 10. Prototypene (for referanse)
 
@@ -259,5 +288,7 @@ Tretten skjermer er tegnet som statiske bilder (mobil, lys og mørk modus). De s
 `00-designsystem.png`, `01-finn.png`, `02-smoring-bilde.png`, `03-ski-liste.png`, `04-ski-skjema.png`, `05-produkt-glider.png`, `06-produkt-festevoks.png`, `07-andres-erfaringer.png`, `08-gjennomgang.png`, `09-nytt-renn-smoring.png`, `10-produktvelger.png`, `11-logg-inn.png`, `12-sjekk-epost.png`, `13-nytt-passord.png`.
 
 Hvis `docs/design/` er tom, bygg etter teksten i dette dokumentet, `AUTH.md` og `readme_design.md`. Si fra til eieren at skjermbilder mangler, men ikke vent på dem.
+
+**Lagt inn så langt:** fem skjermbilder med andre navn. `Skjermbilde1.png` = Finn/Søk (før resultatene ble flyttet til egen visning), `Skjermbilde2.png` = nytt produkt (innganger), `Skjermbilde3.png` = ski-liste, `Skjermbilde4.png` = sjekk produktet (festevoks), `Skjermbilde5.png` = nytt renn, smøring. Eksempeldata med fluor i bildene gjelder ikke: alt er fluorfritt. Der bildene og denne teksten er uenige, gjelder teksten.
 
 --- SLUTT PÅ DOKUMENTET ---
