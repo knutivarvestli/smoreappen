@@ -23,6 +23,7 @@ export function InnstillingerPage() {
         ]}
       />
       <LinkRow icon="file" title="Designsystem" sub="Komponenter og farger" onClick={() => navigate('/designsystem')} />
+      <p className="help">Prototype med eksempeldata. Ingenting lagres ennå.</p>
       <p className="help">Konto, innlogging, aktive økter og eksport av data kommer når innloggingen er på plass.</p>
     </div>
   )

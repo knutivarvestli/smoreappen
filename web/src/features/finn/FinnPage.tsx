@@ -39,7 +39,7 @@ export function FinnPage() {
   const iOmrade = temp !== null && temp >= res.tips.fra - 3 && temp <= res.tips.til + 3
 
   return (
-    <div className="page">
+    <div className="page page--tight">
       <TopBar title="Smøreappen" mountains onSettings={() => navigate('/innstillinger')} />
       <DisciplineToggle value={disiplin} onChange={velgDisiplin} />
       <TemperatureInput label="Lufttemperatur" value={temp} onChange={setTemp} />
@@ -65,7 +65,6 @@ export function FinnPage() {
           Legg til flere kilder?
         </EmptyState>
       )}
-      <p className="help page__note">Prototype med eksempeldata. Ingenting lagres ennå.</p>
     </div>
   )
 }
