@@ -132,6 +132,37 @@ export function ExperienceResultCard({ oppskrift, konfidens, antallRenn, sistBru
   )
 }
 
+type RecommendationProps = {
+  rangering: number
+  tittel: string
+  /** One short line: why this tip (races, or temperature range and fetch date). */
+  begrunnelse: string
+  kilde: { type: 'min'; konfidens: Konfidens } | { type: 'andre'; domene: string }
+  onOpen?: () => void
+}
+
+/** One of the top tips on «Resultater». The source is always marked on the card. */
+export function RecommendationCard({ rangering, tittel, begrunnelse, kilde, onOpen }: RecommendationProps) {
+  return (
+    <button type="button" className={`card result-card reco ${kilde.type === 'min' ? 'result-card--min' : 'result-card--andres'}`} onClick={onOpen}>
+      <span className="result-card__badges">
+        <span className="result-card__rank" aria-hidden="true">{rangering}</span>
+        <span className="visually-hidden">Nummer {rangering}:</span>
+        {kilde.type === 'min' ? (
+          <>
+            <SourceBadge kind="min" />
+            <ConfidenceBadge level={kilde.konfidens} />
+          </>
+        ) : (
+          <span className="src src--andres src--chip"><Icon name="globe" size={16} />{kilde.domene}</span>
+        )}
+      </span>
+      <span className="result-card__title reco__title">{tittel}</span>
+      <span className="result-card__text num">{begrunnelse}</span>
+    </button>
+  )
+}
+
 type RaceCardProps = {
   dato: string
   sted: string

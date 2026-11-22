@@ -92,12 +92,15 @@ Skjermen het «Finn» tidligere. Hovedsiden har bare forholdene og selve søket.
 - Stor knapp **«Søk»** nederst. Ingen resultater på hovedsiden.
 
 **Resultater (`/resultater`):**
-- Forholdslinje øverst (disiplin · temp · snøtype, og snøopprinnelse) med «Endre», som går tilbake til hovedsiden med valgene beholdt.
-- Resultat i to merkede grupper: **Min erfaring** øverst (hvis data), **Andres erfaringer** under. Aldri blandet uten merking. Opptil tre kort per gruppe.
-- «Søk» i menyen er markert også her.
-- Kort er kompakte: kilde/domene, temperaturområde, én linje tekst (kuttes med «…»). Tips fra andre viser hentet-dato på samme linje som domenet.
+- Forholdslinje øverst (disiplin · temp · snøtype, snøopprinnelse under) med «Endre», som går tilbake til hovedsiden med valgene beholdt.
+- **Tre smøretips** i én nummerert liste, sortert med egen erfaring tyngst. Hvert kort viser alltid kilden: «Min erfaring» med konfidensmerke, eller domenet for andres tips. Aldri blandet uten merking.
+- Sortering (prototype): egen erfaring vektes etter konfidens (Solid 3, Noe 2, Ett renn 1), andres godkjente tips etter sikkerhet (Høy 1,5, Middels 1, Lav 0,5). Solid og noe egen erfaring går dermed alltid foran andres tips. Ett enkelt eget renn kan havne bak et tips med høy sikkerhet. Ved lik vekt går egen erfaring først, så flest renn, så nærmest temperatur. Den ekte rangeringen (likhet, shrinkage) gjøres i backend.
+- Under lista: to knapper, **Mine erfaringer (N)** og **Andres erfaringer (N)**, som åpner detaljvisningene `/resultater/mine` og `/resultater/andre` med alle treff i hver gruppe. Knappen er deaktivert når gruppen er tom.
+- Visningen med tre tips og knappene skal passe uten skrolling ned til 360 × 640.
+- «Søk» i menyen er markert på resultatvisningen og detaljvisningene.
+- Kort er kompakte: kilde/domene, temperaturområde, én linje tekst (kuttes med «…»). Tips fra andre viser hentet-dato.
 - Tom: «Ingen godkjente tips for disse forholdene. Legg til flere kilder?»
-- Hvis flere kilder passer men anbefaler ulike løsninger: vis «Kildene anbefaler ulike løsninger. Din egen erfaring teller tyngst.»
+- Hvis flere kilder passer men anbefaler ulike løsninger: vis «Kildene anbefaler ulike løsninger. Din egen erfaring teller tyngst.» (i detaljvisningen for andres erfaringer).
 - Min erfaring viser alltid antall renn og konfidensmerke (Solid erfaring / Noe erfaring / Ett renn).
 
 ### 5.2 Ski (Utstyr → Ski)
@@ -256,7 +259,7 @@ Eksempeldata i prototypene (produktnavn merket «(eksempel)», Fischer Speedmax 
 
 **Inndata:** `TemperatureInput` (stor display, slider med minusgrader, +/− stepper, direkte tallinntasting), `DisciplineToggle` (med fargeaksent), `PickRow` (listevalg der kun én rad vises; erstatter `SnowTypeChips`), `SegmentedControl`, `RatingStars`, `RankPicker`, `TextField`, `PasswordField` (med «Vis passord»), `SearchField`, `ProductPicker`.
 
-**Visning:** `TipCard` (med `SourceBadge`), `ExperienceResultCard` (med `ConfidenceBadge`), `WaxLayerList` / `WaxLayerItem`, `ProductCard`, `SkiCard`, `RaceCard`, `ConditionsSummary`, `FilterChips`, `StatusBadge`, `FlagBadge` («Sjekk»/«Passer nå»), `StepProgress`, `ReviewBanner`, `Timeline`, `EmptyState`, `ErrorState`, `LoadingState`.
+**Visning:** `RecommendationCard` (ett av de tre smøretipsene, med plassering og kilde), `TipCard` (med `SourceBadge`), `ExperienceResultCard` (med `ConfidenceBadge`), `WaxLayerList` / `WaxLayerItem`, `ProductCard`, `SkiCard`, `RaceCard`, `ConditionsSummary`, `FilterChips`, `StatusBadge`, `FlagBadge` («Sjekk»/«Passer nå»), `StepProgress`, `ReviewBanner`, `Timeline`, `EmptyState`, `ErrorState`, `LoadingState`.
 
 **Skjemadeler (lagt til under prototypingen):** `SelectField` (innebygd nedtrekksvalg), `TempRangeField` («−3 til 0»), `SnowRowList` (festevoks etter snøtype), `LinkRow` (rad som åpner underside eller ekstern lenke), `SourceInfo` («Hentet fra nettside»).
 
