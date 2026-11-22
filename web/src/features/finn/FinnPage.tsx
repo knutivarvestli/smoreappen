@@ -8,47 +8,17 @@ import { TopBar } from '../../components/Navigation'
 import { PickRow } from '../../components/PickRow'
 import { EmptyState } from '../../components/States'
 import { TemperatureInput } from '../../components/TemperatureInput'
+import { useDemo } from '../../demo/DemoStore'
+import { innenfor, OPPSKRIFTER } from '../../demo/erfaring'
 import {
   SNOOPPRINNELSE, SNOTYPE, options,
-  type Disiplin, type Konfidens, type Snoopprinnelse, type Snotype,
+  type Disiplin, type Snoopprinnelse, type Snotype,
 } from '../../lib/domene'
 import { lagretDisiplin, lagreDisiplin } from '../../lib/prefs'
 import '../../styles/page.css'
 import './FinnPage.css'
 
-// Example results until «Finn» is wired to the API (step 6). All fluor-free.
-type Erfaring = { id: string; oppskrift: string; konfidens: Konfidens; antall: number; sist: string; fra: number; til: number }
-type Tips = { id: string; domene: string; fra: number; til: number; tekst: string; hentet: string }
-
-const EKSEMPEL: Record<Disiplin, { min: Erfaring[]; tips: Tips[] }> = {
-  skoyting: {
-    min: [
-      { id: 'e1', oppskrift: 'Blå blokk + kaldpulver (eksempel)', konfidens: 'solid', antall: 6, sist: '14. feb.', fra: -10, til: -4 },
-      { id: 'e2', oppskrift: 'Skigo FFC LDQ 157 3.0, to lag', konfidens: 'noe', antall: 3, sist: '2. feb.', fra: -9, til: -3 },
-      { id: 'e3', oppskrift: 'Lilla blokk alene (eksempel)', konfidens: 'ett', antall: 1, sist: '18. jan.', fra: -8, til: -2 },
-    ],
-    tips: [
-      { id: 't1', domene: 'eksempel-smoring.no', fra: -8, til: -3, tekst: 'Blokk i to lag, børst, pulver øverst.', hentet: '3. jan. 2026' },
-      { id: 't2', domene: 'skitips.example', fra: -10, til: -4, tekst: 'Hard kaldvoks, stryk tynt og børst grundig på kunstsnø.', hentet: '12. des. 2025' },
-      { id: 't3', domene: 'langrenn-blogg.example', fra: -6, til: -1, tekst: 'Universalblokk og lett rill når snøen er finkornet.', hentet: '28. nov. 2025' },
-    ],
-  },
-  klassisk: {
-    min: [
-      { id: 'e4', oppskrift: 'Swix VP50 Pro, tre tynne lag', konfidens: 'noe', antall: 4, sist: '9. feb.', fra: -6, til: 0 },
-      { id: 'e5', oppskrift: 'Bindevoks + blå festevoks (eksempel)', konfidens: 'noe', antall: 2, sist: '21. jan.', fra: -10, til: -4 },
-      { id: 'e6', oppskrift: 'Klister universal (eksempel)', konfidens: 'ett', antall: 1, sist: '5. mars', fra: -3, til: 2 },
-    ],
-    tips: [
-      { id: 't4', domene: 'skitips.example', fra: -6, til: -2, tekst: 'Hardvoks i tre tynne lag, kork mellom hvert lag.', hentet: '20. des. 2025' },
-      { id: 't5', domene: 'eksempel-smoring.no', fra: -12, til: -5, tekst: 'Bindevoks under, kald festevoks i fire lag ved kunstsnø.', hentet: '3. jan. 2026' },
-      { id: 't6', domene: 'langrenn-blogg.example', fra: -4, til: 1, tekst: 'Klister på gammel snø, festevoks oppå når det er kaldt.', hentet: '15. jan. 2026' },
-    ],
-  },
-}
-
 const MAKS = 3
-const passer = (t: number | null, fra: number, til: number) => t !== null && t >= fra - 3 && t <= til + 3
 
 export function FinnPage() {
   const navigate = useNavigate()
@@ -62,9 +32,15 @@ export function FinnPage() {
     lagreDisiplin(d)
   }
 
-  const min = EKSEMPEL[disiplin].min.filter((e) => passer(temp, e.fra, e.til)).slice(0, MAKS)
-  const tips = EKSEMPEL[disiplin].tips.filter((t) => passer(temp, t.fra, t.til)).slice(0, MAKS)
-  const uenige = new Set(tips.map((t) => t.domene)).size > 1
+  const { tips: alleTips, kilder } = useDemo()
+  const domene = (kildeId: string) => kilder.find((k) => k.id === kildeId)?.domene ?? 'Ukjent kilde'
+
+  const min = OPPSKRIFTER[disiplin].filter((e) => innenfor(temp, e.fra, e.til)).slice(0, MAKS)
+  // Only approved tips are used in recommendations.
+  const tips = alleTips
+    .filter((t) => t.status === 'godkjent' && t.disiplin === disiplin && innenfor(temp, t.fra, t.til))
+    .slice(0, MAKS)
+  const uenige = new Set(tips.map((t) => t.kildeId)).size > 1
 
   return (
     <div className="page page--tight finn">
@@ -111,7 +87,7 @@ export function FinnPage() {
                 <ul className="page__list finn__list">
                   {tips.map((t) => (
                     <li key={t.id}>
-                      <TipCard domene={t.domene} tempFra={t.fra} tempTil={t.til} tekst={t.tekst} hentet={t.hentet} />
+                      <TipCard domene={domene(t.kildeId)} tempFra={t.fra} tempTil={t.til} tekst={t.sammendrag} hentet={t.hentet} />
                     </li>
                   ))}
                 </ul>

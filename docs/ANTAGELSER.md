@@ -57,6 +57,14 @@ Beslutninger tatt der dokumentasjonen var uklar eller manglet. Nyeste nederst.
 
 - `readme.md` og `docs/SPEC.md` er slettet. Begge var utgått (se steg 1). `docs/SPEC_NEW.md` er spesifikasjonen.
 
+## Spør og Andres erfaringer (prototype)
+
+- **Andres erfaringer:** henting er simulert. Ny lenke gir tre utkast (høy, middels og lav sikkerhet). Samme domene kan ikke legges til to ganger; da tilbys «Oppdater kilden». Behandlede utkast blir stående på gjennomgangsskjermen med «Angre» til brukeren trykker «Ferdig».
+- Godkjente tips deles med Finn og Spør via eksempelbutikken. Tips uten temperatur vises ikke i temperatursøk (aldri gjett).
+- **Spør:** tolkningen er regelbasert i prototypen (`features/spor/tolk.ts`). Den ekte bruker språkmodellen bak et grensesnitt og returnerer bare et validert filter. Rangering og tall beregnes alltid i kode. Svarteksten er en mal med tall fra beregningen.
+- «Kald» uten tall gir alltid et oppklaringsspørsmål. Mangler disiplin, spør appen. «I dag» bruker −7 °C som eksempel til værhenting finnes.
+- Konfidens i Spør: 5 eller flere renn = Solid erfaring, 2–4 = Noe erfaring, 1 = Ett renn. Kravet om effektivt antall renn (SPEC/readme) kommer med den ekte rangeringen.
+
 ## Drift
 
 - **`render.yaml`:** `preDeployCommand` bruker full sti `/app/smoreappen migrate`. `UPLOAD_DIR` er utelatt fordi bilder ikke lagres.

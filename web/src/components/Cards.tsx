@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { DISIPLIN, type Disiplin, type Konfidens } from '../lib/domene'
-import { formatTempRange } from '../lib/format'
+import { formatTemp, formatTempRange } from '../lib/format'
 import { ConfidenceBadge, SourceBadge } from './Badges'
 import { Icon } from './Icon'
 import './Badges.css'
@@ -101,22 +101,78 @@ type ExperienceProps = {
   konfidens: Konfidens
   antallRenn: number
   sistBrukt?: string
+  /** «Raskest i 4 av 5 direkte sammenligninger» */
+  direkte?: { seire: number; av: number }
+  rangering?: number
   onOpen?: () => void
 }
 
 /** Your own result: always shows number of races and confidence. */
-export function ExperienceResultCard({ oppskrift, konfidens, antallRenn, sistBrukt, onOpen }: ExperienceProps) {
+export function ExperienceResultCard({ oppskrift, konfidens, antallRenn, sistBrukt, direkte, rangering, onOpen }: ExperienceProps) {
   return (
     <button type="button" className="card result-card result-card--min" onClick={onOpen}>
       <span className="result-card__badges">
         <SourceBadge kind="min" />
         <ConfidenceBadge level={konfidens} />
       </span>
-      <span className="result-card__title">{oppskrift}</span>
+      <span className="result-card__title">
+        {rangering !== undefined && <span className="result-card__rank" aria-label={`Nummer ${rangering}`}>{rangering}</span>}
+        {oppskrift}
+      </span>
       <span className="result-card__text">
         Bygger på {antallRenn} renn
         {sistBrukt ? ` · sist ${sistBrukt}` : ''}
       </span>
+      {direkte && (
+        <span className="result-card__text">
+          Raskest i {direkte.seire} av {direkte.av} direkte sammenligninger
+        </span>
+      )}
     </button>
+  )
+}
+
+type RaceCardProps = {
+  dato: string
+  sted: string
+  lufttemp: number | null
+  forhold: string
+  vurdering: string
+  onOpen?: () => void
+}
+
+/** A race in lists: date, place, temperature large, conditions and rating. */
+export function RaceCard({ dato, sted, lufttemp, forhold, vurdering, onOpen }: RaceCardProps) {
+  return (
+    <button type="button" className="card race-card" onClick={onOpen}>
+      <span className="race-card__temp num">{formatTemp(lufttemp)}</span>
+      <span className="race-card__body">
+        <span className="race-card__title">{dato} · {sted}</span>
+        <span className="race-card__meta">{forhold} · {vurdering}</span>
+      </span>
+    </button>
+  )
+}
+
+type Chip = { id: string; label: string; onRemove?: () => void; onToggle?: () => void; toggleLabel?: string }
+
+/** Active filters. Each chip can be changed or removed with one tap. */
+export function FilterChips({ label, chips }: { label: string; chips: Chip[] }) {
+  return (
+    <div className="chips" role="group" aria-label={label}>
+      {chips.map((c) =>
+        c.onRemove ? (
+          <button key={c.id} type="button" className="chip" onClick={c.onRemove} aria-label={`Fjern ${c.label}`}>
+            <span className="num">{c.label}</span>
+            <Icon name="x" size={16} />
+          </button>
+        ) : (
+          <button key={c.id} type="button" className="chip" onClick={c.onToggle} aria-label={c.toggleLabel}>
+            <span>{c.label}</span>
+            <Icon name="refresh" size={16} />
+          </button>
+        ),
+      )}
+    </div>
   )
 }

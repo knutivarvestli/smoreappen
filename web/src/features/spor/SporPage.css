@@ -1,0 +1,21 @@
+.spor__form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: var(--s2);
+}
+.spor__oppklaring,
+.spor__svar { display: grid; gap: var(--s2); }
+.spor__oppklaring {
+  padding: var(--s3);
+  border: var(--line) solid var(--primary);
+  border-radius: var(--r-md);
+  background: var(--surface);
+}
+.spor__tekst {
+  padding: var(--s3);
+  border-left: 4px solid var(--mine);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  background: var(--surface);
+  line-height: 1.5;
+}
