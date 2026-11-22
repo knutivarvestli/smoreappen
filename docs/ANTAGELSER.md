@@ -78,6 +78,17 @@ Beslutninger tatt der dokumentasjonen var uklar eller manglet. Nyeste nederst.
 - Valgene huskes mellom hovedsiden og resultatene (i minnet). «Endre» og tilbake-pilen går til hovedsiden med valgene beholdt. «Søk» i menyen er markert også på resultatvisningen.
 - Lenken går til forsiden av yr.no (`https://www.yr.no/nb`) og åpnes i ny fane. Henting av vær inn i appen (MET-API) er fortsatt fase 2.
 
+## Tre smøretips (eierens ønske)
+
+- Resultater viser nå tre smøretips i én liste i stedet for to grupper med opptil tre kort hver. Detaljene ligger bak knappene «Mine erfaringer» og «Andres erfaringer». Skrevet inn i SPEC_NEW.md 5.1.
+- Vektene i sorteringen (`web/src/lib/anbefaling.ts`, testet) er valgt for å oppfylle «egen erfaring teller tyngst» og samtidig «ett renn tolkes forsiktig». De er en enkel prototype til backend-rangeringen finnes.
+
+## Feste og glid for klassisk (eierens ønske)
+
+- Klassisk viser feste og glid hver for seg, med tre smøretips hver, på to faner. Feste vises først fordi feste ofte er det mest kritiske i klassisk. Skøyting har bare glid.
+- Eksempeldata: oppskriftene har rolle (`feste`/`glid`). Klassisk har fått tre glidoppskrifter og to glidtips. Festerenn har festevurdering i stedet for glidvurdering.
+- Toppfeltet «Resultater» er fjernet på resultatvisningen for å få plass til fanene på små telefoner. På skjermer lavere enn 660 px skjules forklaringslinjen «Din egen erfaring teller tyngst» når fanene vises.
+
 ## Drift
 
 - **`render.yaml`:** `preDeployCommand` bruker full sti `/app/smoreappen migrate`. `UPLOAD_DIR` er utelatt fordi bilder ikke lagres.

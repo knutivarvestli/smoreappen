@@ -18,7 +18,7 @@ export const NAV_ITEMS: Item[] = [
 ]
 
 /** The results view belongs to «Søk», so its menu item stays marked there. */
-const useErResultat = () => useLocation().pathname === '/resultater'
+const useErResultat = () => useLocation().pathname.startsWith('/resultater')
 
 export function BottomNav() {
   const erResultat = useErResultat()

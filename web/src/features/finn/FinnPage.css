@@ -3,6 +3,40 @@
 
 /* Results */
 .resultater__gruppe { display: grid; gap: 6px; }
+.resultater__hode {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  column-gap: var(--s3);
+  margin-top: 2px;
+}
+.resultater__tittel { font-size: var(--fs-heading); }
+.resultater__forklaring { font-size: var(--fs-label); }
+.erfaringer__rolle { margin-top: -4px; color: var(--text-2); }
+.resultater__panel { display: grid; gap: 6px; }
+/* Compact conditions line so three tips and the two buttons fit on a phone */
+.resultater { padding-top: var(--s2); }
+.resultater .conditions__main { font-size: 0.9375rem; }
+/* Low screens with the grip/glide tabs: drop the explanation line to keep the buttons visible */
+@media (max-height: 660px) {
+  .resultater--faner .resultater__forklaring { display: none; }
+}
+.resultater .conditions { min-height: var(--tap); padding-block: var(--s1); }
+.resultater__detaljer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s2);
+  margin-top: var(--s2);
+}
+/* Always side by side; long labels wrap to two lines on narrow phones */
+.resultater__detaljer .btn {
+  min-height: 56px;
+  padding: var(--s1) var(--s2);
+  line-height: 1.2;
+  text-align: center;
+  white-space: normal;
+}
 .finn__list { gap: 6px; }
 .finn__uenige {
   display: flex;
