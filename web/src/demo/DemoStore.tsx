@@ -2,7 +2,8 @@
 // replaced by the API in later steps. Product names marked «(eksempel)» are
 // illustrations; Skigo and Swix match the fasit in docs/INNHENTING.md.
 import { createContext, useContext, useState, type ReactNode } from 'react'
-import type { Disiplin, Kategori, Snotype } from '../lib/domene'
+import type { Disiplin, Kategori, Snoopprinnelse, Snotype } from '../lib/domene'
+import { lagretDisiplin } from '../lib/prefs'
 
 export type SnoRad = { id: string; tekst: string; tags: Snotype[]; fra: number; til: number }
 
@@ -150,6 +151,16 @@ type Store = {
   lagreProdukt: (p: Produkt) => void
   lagreKilde: (k: Kilde) => void
   lagreTips: (t: EksternTips[]) => void
+  /** Conditions chosen on the main page; kept when moving to the results and back. */
+  sok: SokFilter
+  settSok: (patch: Partial<SokFilter>) => void
+}
+
+export type SokFilter = {
+  disiplin: Disiplin
+  temp: number | null
+  snotyper: Snotype[]
+  opprinnelse: Snoopprinnelse | null
 }
 
 const Ctx = createContext<Store | null>(null)
@@ -159,6 +170,9 @@ export function DemoStoreProvider({ children }: { children: ReactNode }) {
   const [produkter, setProdukter] = useState(START_PRODUKTER)
   const [kilder, setKilder] = useState(START_KILDER)
   const [tips, setTips] = useState(START_TIPS)
+  const [sok, setSok] = useState<SokFilter>(() => ({
+    disiplin: lagretDisiplin(), temp: -7, snotyper: ['finkornet'], opprinnelse: 'kunstsno',
+  }))
   const upsert = <T extends { id: string }>(list: T[], item: T) =>
     list.some((x) => x.id === item.id) ? list.map((x) => (x.id === item.id ? item : x)) : [...list, item]
   return (
@@ -172,6 +186,8 @@ export function DemoStoreProvider({ children }: { children: ReactNode }) {
         lagreProdukt: (p) => setProdukter((l) => upsert(l, p)),
         lagreKilde: (k) => setKilder((l) => upsert(l, k)),
         lagreTips: (nye) => setTips((l) => nye.reduce((acc, t) => upsert(acc, t), l)),
+        sok,
+        settSok: (patch) => setSok((s) => ({ ...s, ...patch })),
       }}
     >
       {children}

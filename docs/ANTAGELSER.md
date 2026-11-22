@@ -71,6 +71,12 @@ Beslutninger tatt der dokumentasjonen var uklar eller manglet. Nyeste nederst.
 - **Logo og «Smøreappen» på alle sider.** Et trykk på dem går til hovedsiden. Mobil: smal logolinje øverst på alle sider. På Søk står logoen i fjellfeltet i stedet, slik at siden fortsatt passer uten skrolling. Desktop: logoen står øverst i sidemenyen.
 - Logoen er et eget, enkelt merke (fjelltopp over to skispor) i primærfargen, og følger lys og mørk modus. Samme merke er favicon (`web/public/favicon.svg`).
 
+## Søk og resultater (eierens ønske)
+
+- Hovedsiden viser bare forholdene (disiplin, lufttemperatur, snøtype, snøopprinnelse), en lenke til værmeldingen og knappen «Søk». Min erfaring og Andres erfaringer vises i en egen visning (`/resultater`) etter trykk på Søk. Avvik fra SPEC_NEW.md 5.1, der resultatene står på samme skjerm.
+- Valgene huskes mellom hovedsiden og resultatene (i minnet). «Endre» og tilbake-pilen går til hovedsiden med valgene beholdt. «Søk» i menyen er markert også på resultatvisningen.
+- Lenken går til forsiden av yr.no (`https://www.yr.no/nb`) og åpnes i ny fane. Henting av vær inn i appen (MET-API) er fortsatt fase 2.
+
 ## Drift
 
 - **`render.yaml`:** `preDeployCommand` bruker full sti `/app/smoreappen migrate`. `UPLOAD_DIR` er utelatt fordi bilder ikke lagres.

@@ -17,13 +17,17 @@ export const NAV_ITEMS: Item[] = [
   { to: '/utstyr', label: 'Utstyr', icon: 'bag' },
 ]
 
+/** The results view belongs to «Søk», so its menu item stays marked there. */
+const useErResultat = () => useLocation().pathname === '/resultater'
+
 export function BottomNav() {
+  const erResultat = useErResultat()
   return (
     <nav className="bottom-nav" aria-label="Hovedmeny">
       <ul>
         {NAV_ITEMS.map((item) => (
           <li key={item.to}>
-            <NavLink to={item.to} end={item.to === '/'} className={`bottom-nav__link ${item.primary ? 'is-primary' : ''}`}>
+            <NavLink to={item.to} end={item.to === '/'} className={({ isActive }) => `bottom-nav__link ${item.primary ? 'is-primary' : ''} ${isActive || (item.to === '/' && erResultat) ? 'active' : ''}`}>
               <span className="bottom-nav__icon"><Icon name={item.icon} size={item.primary ? 26 : 24} /></span>
               {item.primary ? (
                 <span className="visually-hidden">{item.label}</span>
@@ -44,13 +48,14 @@ export function BottomNav() {
 }
 
 export function SideNav() {
+  const erResultat = useErResultat()
   return (
     <nav className="side-nav" aria-label="Hovedmeny">
       <Brand className="side-nav__brand" />
       <ul>
         {NAV_ITEMS.map((item) => (
           <li key={item.to}>
-            <NavLink to={item.to} end={item.to === '/'} className={`side-nav__link ${item.primary ? 'is-primary' : ''}`}>
+            <NavLink to={item.to} end={item.to === '/'} className={({ isActive }) => `side-nav__link ${item.primary ? 'is-primary' : ''} ${isActive || (item.to === '/' && erResultat) ? 'active' : ''}`}>
               <Icon name={item.icon} />
               <span>{item.label}</span>
             </NavLink>

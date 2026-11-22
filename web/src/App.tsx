@@ -6,6 +6,7 @@ import { DemoStoreProvider } from './demo/DemoStore'
 import { DesignSystemPage } from './features/designsystem/DesignSystemPage'
 import { ScreenExamples } from './features/designsystem/ScreenExamples'
 import { FinnPage } from './features/finn/FinnPage'
+import { ResultaterPage } from './features/finn/ResultaterPage'
 import { InnstillingerPage } from './features/innstillinger/InnstillingerPage'
 import { NyttRennPage } from './features/logg/NyttRennPage'
 import { SporPage } from './features/spor/SporPage'
@@ -26,6 +27,7 @@ export function App() {
           <Route path="/" element={<FinnPage />} />
           <Route path="/finn" element={<Navigate to="/" replace />} />
           <Route path="/sok" element={<Navigate to="/" replace />} />
+          <Route path="/resultater" element={<ResultaterPage />} />
           <Route path="/spor" element={<SporPage />} />
           <Route path="/tips" element={<TipsPage />} />
           <Route path="/utstyr" element={<UtstyrPage />} />

@@ -40,6 +40,8 @@ const paths = {
   skoyting: <path d="M4 4l7 16M20 4l-7 16" />,
   star: <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9z" />,
   arrowUp: <path d="M12 19V5M6 11l6-6 6 6" />,
+  cloud: <path d="M7 18h10a4 4 0 0 0 .7-7.9A6 6 0 0 0 6.2 9 4.5 4.5 0 0 0 7 18z" />,
+  external: <path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />,
   cloudOff: <><path d="M7 18h10a4 4 0 0 0 .7-7.9A6 6 0 0 0 6.2 9 4.5 4.5 0 0 0 7 18z" /><path d="m3 3 18 18" /></>,
 } as const
 
