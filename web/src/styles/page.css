@@ -1,7 +1,15 @@
 /* Shared layout for screens */
 .page { display: grid; gap: var(--s3); padding-bottom: var(--s4); }
 .page__group { margin-top: var(--s2); font-size: var(--fs-body); font-weight: 600; color: var(--text-2); }
+
+/* Tight: one-screen views such as «Finn» */
+.page--tight { gap: 6px; padding-bottom: 0; }
+.page--tight .page__group { margin: 2px 0 -2px; font-size: var(--fs-label); line-height: 1.25; }
+.page--tight .temp { padding: 6px var(--s3) 2px; gap: 0; }
+.page--tight .temp__slider { height: 26px; }
 .page__list { display: grid; gap: var(--s2); margin: 0; padding: 0; list-style: none; }
+/* Long one-line texts (ellipsis) must not widen the list beyond the screen */
+.page__list > li { min-width: 0; }
 .page__or { text-align: center; }
 .page__note { text-align: center; padding: var(--s2) 0; }
 .page__row2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); }

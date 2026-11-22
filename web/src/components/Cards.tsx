@@ -88,10 +88,10 @@ export function TipCard({ domene, tempFra, tempTil, tekst, hentet, onOpen }: Tip
     <button type="button" className="card result-card result-card--andres" onClick={onOpen}>
       <span className="result-card__badges">
         <span className="src src--andres src--chip"><Icon name="link" size={16} />{domene}</span>
+        <span className="result-card__date">Hentet {hentet}</span>
       </span>
       <span className="result-card__title num">{formatTempRange(tempFra, tempTil)}</span>
-      <span className="result-card__text">{tekst}</span>
-      <span className="help">Hentet {hentet}</span>
+      <span className="result-card__text result-card__text--one" title={tekst}>{tekst}</span>
     </button>
   )
 }

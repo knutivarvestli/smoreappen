@@ -1,7 +1,8 @@
+/* Compact: fits a phone screen together with the results on «Finn». */
 .temp {
   display: grid;
-  gap: var(--s2);
-  padding: var(--s3) var(--s3) var(--s2);
+  gap: 2px;
+  padding: var(--s2) var(--s3);
   border: var(--line) solid var(--border);
   border-radius: var(--r-md);
   background: var(--surface);
@@ -42,16 +43,16 @@
   border-bottom: var(--line) dashed transparent;
   background: transparent;
   color: var(--text);
-  font-size: 4rem;
+  font-size: 3rem; /* 48 px: smallest display size allowed by SPEC_NEW.md */
   font-weight: 600;
-  line-height: 1.1;
+  line-height: 1;
   letter-spacing: -0.02em;
   text-align: right;
 }
 .temp__input:hover { border-bottom-color: var(--border); }
 .temp__input:focus-visible { outline-offset: 4px; border-radius: var(--r-sm); }
 .temp__input::placeholder {
-  font-size: 1.375rem;
+  font-size: 1.25rem;
   font-weight: 500;
   letter-spacing: 0;
   color: var(--text-2);
@@ -61,14 +62,14 @@
 .temp__input[aria-invalid="true"] { border-bottom-color: var(--error); }
 .temp__unit {
   margin-left: var(--s1);
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 400;
   color: var(--text-2);
 }
 
 .temp__slider {
   width: 100%;
-  height: 40px;
+  height: 28px;
   margin: 0;
   accent-color: var(--text-2);
   cursor: pointer;

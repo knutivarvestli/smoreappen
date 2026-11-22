@@ -3,7 +3,7 @@
   width: 100%;
   max-width: 720px;
   margin: 0 auto;
-  padding: 0 var(--s4) calc(88px + var(--s6) + env(safe-area-inset-bottom));
+  padding: 0 var(--s4) calc(56px + var(--s2) + env(safe-area-inset-bottom));
 }
 .shell--flow .shell__main { padding-bottom: 0; }
 
@@ -29,9 +29,9 @@
   display: grid;
   justify-items: center;
   align-content: center;
-  gap: 2px;
-  min-height: 64px;
-  padding: var(--s1) 2px;
+  gap: 0;
+  min-height: 56px;
+  padding: 2px;
   color: var(--text-2);
   font-size: 0.75rem;
   font-weight: 500;
@@ -45,9 +45,9 @@
 /* «+» Logg: raised, bordered box */
 .bottom-nav__link.is-primary { align-content: start; padding-top: 0; }
 .bottom-nav__link.is-primary .bottom-nav__icon {
-  width: 52px;
-  height: 52px;
-  margin-top: -18px;
+  width: 48px;
+  height: 48px;
+  margin-top: -14px;
   border: var(--line) solid var(--border);
   border-radius: var(--r-md);
   background: var(--surface);
@@ -72,8 +72,9 @@
 .top-bar__actions { display: flex; gap: var(--s1); }
 
 .top-bar--mountains {
-  margin: 0 calc(-1 * var(--s4)) var(--s2);
-  padding: var(--s3) var(--s4) var(--s8);
+  min-height: 52px;
+  margin: 0 calc(-1 * var(--s4));
+  padding: 0 var(--s4) var(--s1);
   overflow: hidden;
   isolation: isolate;
 }
@@ -86,7 +87,7 @@
   background: var(--bg);
 }
 .top-bar__bg .mountains { height: 100%; }
-.top-bar--mountains .top-bar__title { font-size: 1.25rem; }
+.top-bar--mountains .top-bar__title { font-size: 1.125rem; }
 
 @media (min-width: 1024px) {
   .bottom-nav { display: none; }

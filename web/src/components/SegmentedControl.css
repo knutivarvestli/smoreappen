@@ -50,7 +50,7 @@
 /* Split: separate buttons. Selected = accent background, thick border and bold text. */
 .seg--split .seg__track { border: 0; background: transparent; padding: 0; gap: var(--s2); }
 .seg--split .seg__opt {
-  min-height: 56px;
+  min-height: var(--tap);
   gap: var(--s2);
   border-color: var(--border);
   border-radius: var(--r-md);

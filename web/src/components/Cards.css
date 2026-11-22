@@ -53,15 +53,21 @@ button.card:hover { border-color: var(--text-2); }
 .product-card__meta { color: var(--text-2); font-size: var(--fs-help); }
 
 /* Result cards in «Finn» */
+/* Compact: «Min erfaring» and «Andres erfaringer» fit on screen with the inputs */
 .result-card {
+  min-width: 0;
   flex-direction: column;
-  align-items: flex-start;
-  gap: var(--s1);
-  padding: var(--s3) var(--s4) var(--s4);
+  align-items: stretch;
+  gap: 2px;
+  padding: var(--s2) var(--s3);
 }
-.result-card--min { border-color: var(--mine); }
-.result-card__badges { display: flex; flex-wrap: wrap; gap: var(--s1); margin-bottom: var(--s1); }
-.result-card__title { font-size: 1.5rem; font-weight: 600; line-height: 1.2; }
-.result-card__text { color: var(--text-2); font-size: var(--fs-help); }
+.result-card--min { border-color: var(--mine); border-width: 2px; }
+.result-card__badges { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s1); }
+.result-card__date { margin-left: auto; color: var(--text-2); font-size: var(--fs-label); }
+.result-card__title { font-size: 1.125rem; font-weight: 600; line-height: 1.3; }
+.result-card__text { color: var(--text-2); font-size: var(--fs-help); line-height: 1.35; }
+.result-card__text--one { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.result-card .src,
+.result-card .conf { min-height: 22px; padding-block: 0; }
 
 .src--chip { border-color: transparent; }
