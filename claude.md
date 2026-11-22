@@ -51,6 +51,9 @@ Datamodellen er SPEC_NEW.md seksjon 6 pluss tabellene i AUTH.md (`users`, `sessi
 - Lys og mørk modus fra start. Respekter «reduser bevegelse». Synlig fokus og tastaturnavigasjon.
 - Tekst: sentence case, ingen utropstegn i systemtekst, verb først på knapper, «din/dine» i systemtekst (men «Min erfaring» er et egennavn).
 - Komponentnavn som i SPEC_NEW.md seksjon 8.
+- Logo og «Smøreappen» øverst på alle sider. Trykk går alltid til hovedsiden (Søk).
+- Hovedsiden (Søk) skal passe på én mobilskjerm uten skrolling, ned til 360 × 640. Resultatene vises i egen visning etter trykk på Søk.
+- Hver skjerm er en egen visning. Skjema og stegvise flyter vises uten bunnmeny, med hovedhandlingen alltid synlig nederst.
 
 ## Teknisk
 
@@ -63,8 +66,17 @@ Datamodellen er SPEC_NEW.md seksjon 6 pluss tabellene i AUTH.md (`users`, `sessi
   - Kjøre tester: `docker compose --profile test run --rm test`
   - Lint og formatering: `gofmt -l .` og `go vet ./...` (fungerer også direkte i Windows)
   - Frontend (i `web/`, fra WSL): `npm test`, `npm run lint`, `npm run build` (bygger til `internal/webui/dist`, som Go-binæren bygger inn), `npm run dev` (Vite på :5173, proxy til :8080)
-  - Designsystemet vises på `/designsystem`
+  - Designsystemet vises på `/designsystem`, statiske skjermeksempler på `/designsystem/eksempler`
   - Migrering: `docker compose run --rm --build migrate`
+  - Åpne fra Windows: bruk `http://127.0.0.1:8080`, ikke `localhost` (`localhost` prøver IPv6 først og når ikke appen i WSL)
+  - Visuell sjekk og klikkflyter på mobilbredde: Playwright i Docker (`mcr.microsoft.com/playwright`), mot `http://localhost:8080` med `--network host`. Mål at Søk ikke skroller på 390×844, 390×700, 375×667 og 360×640.
+
+## Status
+
+- **Steg 1 ferdig:** prosjektoppsett, datamodell og migreringer (auth- og domenetabeller), `/healthz`, frontend og designsystem.
+- **Klikkbar prototype** av de fleste skjermene, med eksempeldata i minnet (`web/src/demo/`). Den byttes mot ekte API steg for steg og skal ikke brukes som datakilde i ny kode. Se SPEC_NEW.md seksjon 9.
+- **Neste:** steg 2, autentisering.
+- Avvik og beslutninger underveis står i `docs/ANTAGELSER.md`.
 
 ## Byggerekkefølge
 
@@ -75,7 +87,7 @@ Fullfør ett steg om gangen. Vis resultatet før du går videre.
 3. Ski (liste, skjema, status)
 4. Produkter (manuelt skjema, glider og feste)
 5. Nytt renn med smøring (Rill, Glid, Feste) og produktvelger med «Passer nå»
-6. Finn
+6. Søk og resultater (het «Finn» tidligere)
 7. Innhenting fra URL og bilde, med gjennomgangsskjerm
 8. Andres erfaringer
 9. Spør

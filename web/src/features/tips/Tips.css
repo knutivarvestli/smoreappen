@@ -1,0 +1,44 @@
+.tips__finnes { flex-wrap: wrap; }
+.tips__finnes span { flex: 1 1 200px; }
+
+.kilde {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s2) var(--s2) var(--s2) var(--s4);
+  border: var(--line) solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+}
+.kilde__text { display: grid; flex: 1; min-width: 0; }
+.kilde__domene { font-weight: 500; color: var(--text); overflow-wrap: anywhere; }
+
+/* Draft review card */
+.review {
+  flex-direction: column;
+  gap: var(--s2);
+  padding: var(--s3);
+  cursor: default;
+}
+.review.is-godkjent { border-color: var(--ok); }
+.review.is-forkastet { border-style: dashed; color: var(--text-2); }
+.review__head { display: flex; align-items: center; justify-content: space-between; gap: var(--s2); }
+.review__sikkerhet {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s1);
+  font-size: var(--fs-label);
+  font-weight: 600;
+}
+.review__sikkerhet--hoy { color: var(--ok); }
+.review__sikkerhet--middels { color: var(--text-2); }
+.review__sikkerhet--lav { color: var(--warn); }
+.review__temp { font-size: 1.5rem; font-weight: 600; line-height: 1.2; }
+.review__sno { color: var(--text-2); font-size: var(--fs-help); }
+.review__lag { margin: 0; padding-left: 1.25rem; font-size: var(--fs-help); }
+.review__mangler { display: flex; flex-wrap: wrap; gap: var(--s1); }
+.review__edit { display: grid; gap: var(--s2); }
+.review__actions { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.review__actions .btn { flex: 1 1 0; padding: 0 var(--s2); }
+.review__actions--3 .btn { min-width: 0; }
+.review__done { display: flex; align-items: center; justify-content: space-between; gap: var(--s2); }

@@ -14,8 +14,8 @@ Beslutninger tatt der dokumentasjonen var uklar eller manglet. Nyeste nederst.
 - **Én binær** `smoreappen` med underkommandoene `serve` (standard) og `migrate`. `auth reset-link` kommer i steg 2.
 - **Lokal utvikling og tester kjører i Docker via WSL.** Gruppepolicy på utviklingsmaskinen blokkerer lokalt bygde .exe-filer, også testbinærer. Testene bruker `TEST_DATABASE_URL` og lager en ny database per test.
 - **`DEV_INSECURE_COOKIES=true`** tillater cookie uten `Secure` lokalt over http (DRIFT.md, «Lokal utvikling»). Brukes i steg 2.
-- **Frontend** legges i `web/` (React + TypeScript + Vite) og bygges inn i Go-binæren, slik at én Render-tjeneste holder. Settes opp når første skjerm lages (steg 2).
-- **SPEC_NEW.md erstatter SPEC.md**, som er avkuttet. Skjermbildene i `docs/design/` mangler. Designet er bygget etter teksten i SPEC_NEW.md, AUTH.md og readme_design.md.
+- **Frontend** ligger i `web/` (React + TypeScript + Vite) og bygges inn i Go-binæren, slik at én Render-tjeneste holder.
+- **SPEC_NEW.md erstatter SPEC.md**, som var avkuttet. Designet ble først bygget etter teksten, og senere justert etter skjermbildene (se «Skjermbilder»).
 - **Datamodell (SPEC_NEW.md seksjon 6):**
   - Faste verdier lagres som ASCII-koder med CHECK (`klassisk`/`skoyting`, `nysno`, `kunstsno`, `stryk_pa` …). Frontend oversetter til norske etiketter (`web/src/lib/domene.ts`).
   - Snøtypen `gammel_omdannet` er lagt til, fordi festevoks-radene i INNHENTING.md bruker den.
@@ -29,12 +29,13 @@ Beslutninger tatt der dokumentasjonen var uklar eller manglet. Nyeste nederst.
 - **Lys/mørk:** følger systemet, med manuell overstyring (System/Lys/Mørk) lagret per enhet.
 - **Temperaturformat:** ekte minus, pluss foran positive tall («0 til +2 °C»), desimalkomma.
 - **Ikoner:** enkle strekikoner tegnet i `Icon.tsx`. Egne snøtype-ikoner er ikke laget ennå.
-- **Ruten `/` sender foreløpig til `/designsystem`.** Ikke-bygde skjermer viser en tomtilstand. Innlogging foran alt kommer i steg 2.
+- **Ikke-bygde skjermer** viser en tomtilstand. Innlogging foran alt kommer i steg 2. (Ruten `/` sendte først til `/designsystem`; nå er `/` hovedsiden Søk.)
 - **`robots.txt`** med `Disallow: /`, siden appen er privat.
+
 ## Skjermbilder (docs/design/Skjermbilde1–5.png)
 
 - Filene heter ikke som i SPEC_NEW.md seksjon 10. Kobling: 1 = `01-finn`, 2 = nytt produkt (innganger), 3 = `03-ski-liste`, 4 = `06-produkt-festevoks` (gjennomgang), 5 = `09-nytt-renn-smoring`.
-- Designsystemet er justert etter bildene: grå sekundærknapper, tertiær som grå tekst, ikonknapper med kant, disiplinvalg som to knapper med ikon, større temperaturtall uten skala, listevalg på én linje med ikon, «+» i hevet boks i bunnmenyen, fjell bak tittelen på Finn.
+- Designsystemet er justert etter bildene: grå sekundærknapper, tertiær som grå tekst, ikonknapper med kant, disiplinvalg som to knapper med ikon, større temperaturtall uten skala, listevalg på én linje med ikon, «+» i hevet boks i bunnmenyen, fjell bak tittelen på Finn (nå Søk).
 - **Avvik fra bildene:**
   - Eksempeldata med fluor («Fluorpulver kald», «Fluorholdig blokk») er byttet ut. Alt er fluorfritt.
   - «Min erfaring» og konfidensmerket vises som to merker, ikke ett («Min erfaring · Solid»), fordi SPEC_NEW.md krever ulik form per konfidensnivå.
@@ -45,7 +46,7 @@ Beslutninger tatt der dokumentasjonen var uklar eller manglet. Nyeste nederst.
 
 ## Klikkbar prototype
 
-- Hvert skjermbilde er en egen visning. Finn er hovedsiden (`/`). Hovedvisningene (Finn, Spør, Tips, Utstyr) har bunnmeny. Skjema og flyter (Nytt renn, Nytt produkt, Sjekk produktet, Ski-skjema, Innstillinger) vises i fullskjerm uten bunnmeny, som på skjermbildene.
+- Hvert skjermbilde er en egen visning. Søk (tidligere Finn) er hovedsiden (`/`). Hovedvisningene (Søk, Resultater, Spør, Tips, Utstyr) har bunnmeny. Skjema og flyter (Nytt renn, Nytt produkt, Sjekk produktet, Ski-skjema, Innstillinger) vises i fullskjerm uten bunnmeny, som på skjermbildene.
 - «+» (Logg) åpner Nytt renn direkte. Rennlista kommer i steg 10.
 - Data ligger i minnet (`web/src/demo/DemoStore.tsx`) og forsvinner ved ny innlasting. Byttes mot API-et steg for steg.
 - «Hent produkt» simulerer innhenting: lenker med «bull-ski» gir Skigo-fasiten, alle andre gir Swix VP50 Pro. «Ta bilde» gir VP50 Pro med færre felt og to «Sjekk»-felt.
@@ -56,6 +57,26 @@ Beslutninger tatt der dokumentasjonen var uklar eller manglet. Nyeste nederst.
 ## Opprydding
 
 - `readme.md` og `docs/SPEC.md` er slettet. Begge var utgått (se steg 1). `docs/SPEC_NEW.md` er spesifikasjonen.
+
+## Spør og Andres erfaringer (prototype)
+
+- **Andres erfaringer:** henting er simulert. Ny lenke gir tre utkast (høy, middels og lav sikkerhet). Samme domene kan ikke legges til to ganger; da tilbys «Oppdater kilden». Behandlede utkast blir stående på gjennomgangsskjermen med «Angre» til brukeren trykker «Ferdig».
+- Godkjente tips deles med Søk/Resultater og Spør via eksempelbutikken. Tips uten temperatur vises ikke i temperatursøk (aldri gjett).
+- **Spør:** tolkningen er regelbasert i prototypen (`features/spor/tolk.ts`). Den ekte bruker språkmodellen bak et grensesnitt og returnerer bare et validert filter. Rangering og tall beregnes alltid i kode. Svarteksten er en mal med tall fra beregningen.
+- «Kald» uten tall gir alltid et oppklaringsspørsmål. Mangler disiplin, spør appen. «I dag» bruker −7 °C som eksempel til værhenting finnes.
+- Konfidens i Spør: 5 eller flere renn = Solid erfaring, 2–4 = Noe erfaring, 1 = Ett renn. Kravet om effektivt antall renn (SPEC/readme) kommer med den ekte rangeringen.
+
+## Logo og navn (eierens ønske)
+
+- **«Finn» heter «Søk»** i menyen og i teksten. Bestemt av eieren, og nå skrevet inn i SPEC_NEW.md. Hovedsiden er fortsatt `/`, og `/finn` og `/sok` sender dit.
+- **Logo og «Smøreappen» på alle sider.** Et trykk på dem går til hovedsiden. Mobil: smal logolinje øverst på alle sider. På Søk står logoen i fjellfeltet i stedet, slik at siden fortsatt passer uten skrolling. Desktop: logoen står øverst i sidemenyen.
+- Logoen er et eget, enkelt merke (fjelltopp over to skispor) i primærfargen, og følger lys og mørk modus. Samme merke er favicon (`web/public/favicon.svg`).
+
+## Søk og resultater (eierens ønske)
+
+- Hovedsiden viser bare forholdene (disiplin, lufttemperatur, snøtype, snøopprinnelse), en lenke til værmeldingen og knappen «Søk». Min erfaring og Andres erfaringer vises i en egen visning (`/resultater`) etter trykk på Søk. Bestemt av eieren, og nå skrevet inn i SPEC_NEW.md 5.1.
+- Valgene huskes mellom hovedsiden og resultatene (i minnet). «Endre» og tilbake-pilen går til hovedsiden med valgene beholdt. «Søk» i menyen er markert også på resultatvisningen.
+- Lenken går til forsiden av yr.no (`https://www.yr.no/nb`) og åpnes i ny fane. Henting av vær inn i appen (MET-API) er fortsatt fase 2.
 
 ## Drift
 

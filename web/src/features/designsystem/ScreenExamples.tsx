@@ -20,7 +20,7 @@ const noop = () => undefined
 export function ScreenExamples() {
   return (
     <div className="examples">
-      <Frame title="Finn"><FinnExample /></Frame>
+      <Frame title="Søk"><FinnExample /></Frame>
       <Frame title="Nytt produkt"><NyttProduktExample /></Frame>
       <Frame title="Mine ski"><MineSkiExample /></Frame>
       <Frame title="Sjekk produktet"><SjekkProduktExample /></Frame>
@@ -45,7 +45,7 @@ function FinnExample() {
   const [opp, setOpp] = useState<Snoopprinnelse | null>('kunstsno')
   return (
     <div className="screen">
-      <TopBar title="Smøreappen" mountains onSettings={noop} />
+      <TopBar title="Søk" brand mountains onSettings={noop} />
       <DisciplineToggle value={disiplin} onChange={setDisiplin} />
       <TemperatureInput label="Lufttemperatur" value={temp} onChange={setTemp} />
       <PickRow label="Snøtype" icon="snowflake" multiple options={options(SNOTYPE)} value={sno} onChange={setSno} />

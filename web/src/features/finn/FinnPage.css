@@ -1,25 +1,8 @@
-/* Mobile: the page fills the screen above the bottom nav. Controls stay put,
-   results scroll inside their own area. */
-.finn {
-  display: flex;
-  flex-direction: column;
-  height: calc(100dvh - 56px - var(--s2) - env(safe-area-inset-bottom));
-}
-.finn__controls { display: grid; gap: 6px; flex: none; }
-.finn__results {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  flex: 1;
-  min-height: 140px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  /* room for focus outlines inside the scroll area */
-  margin: 0 -4px;
-  padding: 0 4px 4px;
-  border-radius: var(--r-sm);
-}
-.finn__results:focus-visible { outline-offset: -3px; }
+/* Main page: conditions only; the search button sits right below them. */
+.sok .sok__knapp { margin-top: var(--s1); }
+
+/* Results */
+.resultater__gruppe { display: grid; gap: 6px; }
 .finn__list { gap: 6px; }
 .finn__uenige {
   display: flex;
@@ -29,9 +12,3 @@
   font-size: var(--fs-label);
 }
 .finn__uenige svg { flex: none; }
-
-/* Desktop: normal page flow */
-@media (min-width: 1024px) {
-  .finn { height: auto; }
-  .finn__results { overflow: visible; }
-}

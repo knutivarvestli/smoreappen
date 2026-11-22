@@ -58,7 +58,8 @@
   color: var(--text);
   text-align: left;
 }
-.link-row { cursor: pointer; }
+.link-row { cursor: pointer; text-decoration: none; }
+a.link-row .link-row__title { text-decoration: underline; text-underline-offset: 3px; }
 .link-row:hover { border-color: var(--text-2); }
 .link-row__text,
 .source-info__text { display: grid; flex: 1; min-width: 0; }

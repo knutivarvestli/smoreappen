@@ -33,17 +33,18 @@ type ConditionsProps = {
   lufttemp: number | null
   snotyper: Snotype[]
   onEdit?: () => void
+  hjelpetekst?: string
 }
 
 /** Compact conditions line: discipline · temperature · snow type, with «Endre». */
-export function ConditionsSummary({ disiplin, lufttemp, snotyper, onEdit }: ConditionsProps) {
+export function ConditionsSummary({ disiplin, lufttemp, snotyper, onEdit, hjelpetekst = 'Forhold. Brukes til å foreslå produkter.' }: ConditionsProps) {
   const sno = snotyper.length ? snotyper.map((s) => SNOTYPE[s]).join(', ') : 'Snøtype ikke valgt'
   return (
     <div className="conditions">
       <Icon name="thermometer" />
       <span className="conditions__text">
         <span className="conditions__main num">{DISIPLIN[disiplin]} · {formatTemp(lufttemp)} · {sno}</span>
-        <span className="help">Forhold. Brukes til å foreslå produkter.</span>
+        <span className="help">{hjelpetekst}</span>
       </span>
       {onEdit && (
         <button type="button" className="conditions__edit" onClick={onEdit}>

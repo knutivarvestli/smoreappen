@@ -71,3 +71,42 @@ button.card:hover { border-color: var(--text-2); }
 .result-card .conf { min-height: 22px; padding-block: 0; }
 
 .src--chip { border-color: transparent; }
+
+.result-card__rank {
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin-right: var(--s2);
+  border-radius: var(--r-full);
+  background: var(--ice);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  vertical-align: 2px;
+}
+
+/* RaceCard */
+.race-card { align-items: center; gap: var(--s3); min-height: 56px; padding: var(--s2) var(--s3); }
+.race-card__temp { flex: none; min-width: 4.5ch; font-size: 1.25rem; font-weight: 600; }
+.race-card__body { display: grid; flex: 1; min-width: 0; }
+.race-card__title { font-weight: 500; }
+.race-card__meta { color: var(--text-2); font-size: var(--fs-help); }
+
+/* FilterChips */
+.chips { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s1);
+  min-height: var(--tap);
+  padding: 0 var(--s3);
+  border: var(--line) solid var(--primary);
+  border-radius: var(--r-full);
+  background: var(--ice);
+  color: var(--text);
+  font-weight: 600;
+  cursor: pointer;
+}
+.chip:hover { filter: brightness(0.97); }
+/* Suggestion chips: outline only */
+.chip--suggest { background: var(--surface); border-color: var(--border); font-weight: 500; }

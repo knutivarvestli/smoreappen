@@ -1,6 +1,6 @@
 import './MountainSilhouette.css'
 
-/** Two flat, low mountain layers. Decorative only. Top of «Finn» and auth screens. */
+/** Two flat, low mountain layers. Decorative only. Top of «Søk» and auth screens. */
 export function MountainSilhouette() {
   return (
     <svg className="mountains" viewBox="0 0 390 72" preserveAspectRatio="none" aria-hidden="true" focusable="false">

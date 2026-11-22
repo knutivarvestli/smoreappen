@@ -6,8 +6,12 @@ import { DemoStoreProvider } from './demo/DemoStore'
 import { DesignSystemPage } from './features/designsystem/DesignSystemPage'
 import { ScreenExamples } from './features/designsystem/ScreenExamples'
 import { FinnPage } from './features/finn/FinnPage'
+import { ResultaterPage } from './features/finn/ResultaterPage'
 import { InnstillingerPage } from './features/innstillinger/InnstillingerPage'
 import { NyttRennPage } from './features/logg/NyttRennPage'
+import { SporPage } from './features/spor/SporPage'
+import { GjennomgangPage } from './features/tips/GjennomgangPage'
+import { TipsPage } from './features/tips/TipsPage'
 import { NyttProduktPage } from './features/utstyr/NyttProduktPage'
 import { SjekkProduktPage } from './features/utstyr/SjekkProduktPage'
 import { SkiFormPage } from './features/utstyr/SkiFormPage'
@@ -22,8 +26,10 @@ export function App() {
         <Route element={<AppShell><Outlet /></AppShell>}>
           <Route path="/" element={<FinnPage />} />
           <Route path="/finn" element={<Navigate to="/" replace />} />
-          <Route path="/spor" element={<NotYet title="Spør" step={9} />} />
-          <Route path="/tips" element={<NotYet title="Andres erfaringer" step={8} />} />
+          <Route path="/sok" element={<Navigate to="/" replace />} />
+          <Route path="/resultater" element={<ResultaterPage />} />
+          <Route path="/spor" element={<SporPage />} />
+          <Route path="/tips" element={<TipsPage />} />
           <Route path="/utstyr" element={<UtstyrPage />} />
           <Route path="/designsystem" element={<DesignSystemPage />} />
           <Route path="/designsystem/eksempler" element={<><TopBar title="Skjermeksempler" /><ScreenExamples /></>} />
@@ -32,6 +38,7 @@ export function App() {
         {/* Flows: full screen, no bottom navigation */}
         <Route element={<AppShell flow><Outlet /></AppShell>}>
           <Route path="/logg" element={<NyttRennPage />} />
+          <Route path="/tips/gjennomgang" element={<GjennomgangPage />} />
           <Route path="/utstyr/ski/ny" element={<SkiFormPage />} />
           <Route path="/utstyr/ski/:id" element={<SkiFormPage />} />
           <Route path="/utstyr/produkter/ny" element={<NyttProduktPage />} />
@@ -52,7 +59,7 @@ function NotYet({ title, step, back }: { title: string; step?: number; back?: bo
       <TopBar title={title} onBack={back ? () => navigate(-1) : undefined} />
       <EmptyState
         title={step ? `Denne skjermen kommer i steg ${step}` : 'Siden finnes ikke'}
-        action={<Link className="btn btn--secondary btn--md" to="/">Gå til Finn</Link>}
+        action={<Link className="btn btn--secondary btn--md" to="/">Gå til Søk</Link>}
       />
     </>
   )
