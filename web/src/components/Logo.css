@@ -1,0 +1,34 @@
+.logo-mark { display: block; flex: none; }
+.logo-mark__bg { fill: var(--primary); }
+.logo-mark__peak { fill: var(--on-primary); }
+.logo-mark__snow { fill: var(--primary); opacity: 0.35; }
+.logo-mark__track { fill: none; stroke: var(--on-primary); stroke-width: 1.6; stroke-linecap: round; }
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  min-height: var(--tap);
+  padding-right: var(--s2);
+  border-radius: var(--r-sm);
+  color: var(--text);
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+.brand:hover .brand__name { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Slim brand bar above every page (mobile). Desktop shows the brand in the side menu. */
+.brand-bar {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap);
+  border-bottom: var(--line) solid var(--border);
+  margin: 0 calc(-1 * var(--s4));
+  padding: 0 var(--s4);
+  background: var(--bg);
+}
+@media (min-width: 1024px) {
+  .brand-bar { display: none; }
+}

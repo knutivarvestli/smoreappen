@@ -45,7 +45,7 @@ export function FinnPage() {
   return (
     <div className="page page--tight finn">
       <div className="finn__controls">
-        <TopBar title="Smøreappen" mountains onSettings={() => navigate('/innstillinger')} />
+        <TopBar title="Søk" brand mountains onSettings={() => navigate('/innstillinger')} />
         <DisciplineToggle value={disiplin} onChange={velgDisiplin} />
         <TemperatureInput label="Lufttemperatur" value={temp} onChange={setTemp} />
         <PickRow label="Snøtype" icon="snowflake" multiple options={options(SNOTYPE)} value={sno} onChange={setSno} />

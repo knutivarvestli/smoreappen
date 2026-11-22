@@ -25,6 +25,7 @@ export function App() {
         <Route element={<AppShell><Outlet /></AppShell>}>
           <Route path="/" element={<FinnPage />} />
           <Route path="/finn" element={<Navigate to="/" replace />} />
+          <Route path="/sok" element={<Navigate to="/" replace />} />
           <Route path="/spor" element={<SporPage />} />
           <Route path="/tips" element={<TipsPage />} />
           <Route path="/utstyr" element={<UtstyrPage />} />
@@ -56,7 +57,7 @@ function NotYet({ title, step, back }: { title: string; step?: number; back?: bo
       <TopBar title={title} onBack={back ? () => navigate(-1) : undefined} />
       <EmptyState
         title={step ? `Denne skjermen kommer i steg ${step}` : 'Siden finnes ikke'}
-        action={<Link className="btn btn--secondary btn--md" to="/">Gå til Finn</Link>}
+        action={<Link className="btn btn--secondary btn--md" to="/">Gå til Søk</Link>}
       />
     </>
   )

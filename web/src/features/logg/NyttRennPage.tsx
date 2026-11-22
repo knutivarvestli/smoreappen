@@ -89,7 +89,8 @@ export function NyttRennPage() {
   const [aapentLag, setAapentLag] = useState<{ rolle: Rolle; id: string } | null>(null)
 
   useEffect(() => {
-    toppRef.current?.scrollIntoView({ block: 'start' })
+    // Scroll the window (not the page element) so the logo bar stays visible.
+    window.scrollTo({ top: 0 })
   }, [steg, velger, aapentLag, ferdig])
 
   // Switching to skate removes grip layers (grip is classic only).
@@ -146,7 +147,7 @@ export function NyttRennPage() {
         <EmptyState
           icon={ferdig === 'med' ? 'check' : 'flag'}
           title={ferdig === 'med' ? 'Rennet er lagret med vurdering' : 'Rennet er lagret. Vurderingen mangler.'}
-          action={<Button onClick={() => navigate('/')}>Gå til Finn</Button>}
+          action={<Button onClick={() => navigate('/')}>Gå til Søk</Button>}
         >
           {ferdig === 'uten'
             ? 'Fyll ut vurderingen etter rennet mens inntrykket er ferskt. Rennet vises som «Mangler vurdering» i lista.'

@@ -69,6 +69,7 @@
   padding: var(--s2) 0;
 }
 .top-bar__title { flex: 1; min-width: 0; }
+.top-bar__brand { margin-right: auto; }
 .top-bar__actions { display: flex; gap: var(--s1); }
 
 .top-bar--mountains {
@@ -112,12 +113,7 @@
     border-right: var(--line) solid var(--border);
     background: var(--surface);
   }
-  .side-nav__brand {
-    padding: 0 var(--s3) var(--s4);
-    font-size: var(--fs-heading);
-    font-weight: 700;
-    color: var(--primary);
-  }
+  .side-nav__brand { margin: 0 var(--s2) var(--s4); }
   .side-nav ul { display: grid; gap: var(--s1); margin: 0; padding: 0; list-style: none; }
   .side-nav__link {
     display: flex;

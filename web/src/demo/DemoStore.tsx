@@ -110,7 +110,7 @@ const godkjent = (t: Omit<EksternTips, 'status' | 'mangler' | 'lag'> & Partial<E
   status: 'godkjent', mangler: [], lag: [], ...t,
 })
 
-// Example tips (all fluor-free). Only approved tips are used in «Finn» and «Spør».
+// Example tips (all fluor-free). Only approved tips are used in «Søk» and «Spør».
 const START_TIPS: EksternTips[] = [
   godkjent({ id: 't1', kildeId: 'k1', disiplin: 'skoyting', fra: -8, til: -3, snotyper: ['nysno', 'finkornet'], sammendrag: 'Blokk i to lag, børst, pulver øverst.', sikkerhet: 'hoy', hentet: '3. jan. 2026' }),
   godkjent({ id: 't2', kildeId: 'k2', disiplin: 'skoyting', fra: -10, til: -4, snotyper: ['finkornet'], sammendrag: 'Hard kaldvoks, stryk tynt og børst grundig på kunstsnø.', sikkerhet: 'hoy', hentet: '12. des. 2025' }),

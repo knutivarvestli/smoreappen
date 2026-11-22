@@ -65,6 +65,12 @@ Beslutninger tatt der dokumentasjonen var uklar eller manglet. Nyeste nederst.
 - «Kald» uten tall gir alltid et oppklaringsspørsmål. Mangler disiplin, spør appen. «I dag» bruker −7 °C som eksempel til værhenting finnes.
 - Konfidens i Spør: 5 eller flere renn = Solid erfaring, 2–4 = Noe erfaring, 1 = Ett renn. Kravet om effektivt antall renn (SPEC/readme) kommer med den ekte rangeringen.
 
+## Logo og navn (eierens ønske)
+
+- **«Finn» heter «Søk»** i menyen og i teksten. Avvik fra SPEC_NEW.md, bestemt av eieren. Hovedsiden er fortsatt `/`, og `/finn` og `/sok` sender dit.
+- **Logo og «Smøreappen» på alle sider.** Et trykk på dem går til hovedsiden. Mobil: smal logolinje øverst på alle sider. På Søk står logoen i fjellfeltet i stedet, slik at siden fortsatt passer uten skrolling. Desktop: logoen står øverst i sidemenyen.
+- Logoen er et eget, enkelt merke (fjelltopp over to skispor) i primærfargen, og følger lys og mørk modus. Samme merke er favicon (`web/public/favicon.svg`).
+
 ## Drift
 
 - **`render.yaml`:** `preDeployCommand` bruker full sti `/app/smoreappen migrate`. `UPLOAD_DIR` er utelatt fordi bilder ikke lagres.

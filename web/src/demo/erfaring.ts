@@ -1,4 +1,4 @@
-// Example «Min erfaring» data shared by Finn and Spør until real races are
+// Example «Min erfaring» data shared by Søk and Spør until real races are
 // ranked in the backend. All fluor-free; names marked «(eksempel)» are fictional.
 import type { Disiplin, GlidMotFelt, Konfidens, Snoopprinnelse, Snotype } from '../lib/domene'
 
